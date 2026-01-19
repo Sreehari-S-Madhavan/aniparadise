@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--background-dark);
+  color: white;
+}
+
+/* Global styles */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent-purple);
+  text-decoration: underline;
+}
+
+/* Mobile-first responsive base */
+@media (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+}

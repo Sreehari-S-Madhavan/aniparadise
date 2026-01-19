@@ -1,0 +1,18 @@
+.card {
+  background: var(--color-card-dark);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card:hover {
+  border-color: rgba(71, 235, 235, 0.3);
+}
+
+@media (hover: none) {
+  .card {
+    /* Disable hover effects on touch devices */
+  }
+}

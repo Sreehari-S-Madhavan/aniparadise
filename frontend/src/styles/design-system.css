@@ -1,0 +1,70 @@
+/**
+ * AniParadise Design System
+ * Based on the Stitch design files
+ */
+
+:root {
+  /* Colors */
+  --color-primary: #47ebeb;
+  --color-accent-purple: #C580E6;
+  --color-accent-pink: #E680BC;
+  --color-background-light: #f2f2f3;
+  --color-background-dark: #1c1c22;
+  --color-card-dark: #2B2E33;
+  --color-surface-dark: #2b2e33;
+  --color-border-dark: rgba(255, 255, 255, 0.1);
+  
+  /* Text Colors - Better visibility */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #9db8b8;
+  --color-text-muted: #5c7373;
+  --color-text-placeholder: #5c7373;
+  
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Typography */
+  --font-display: 'Spline Sans', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+}
+
+/* Genre Gradients */
+.genre-gradient-1 {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent-purple) 100%);
+}
+
+.genre-gradient-2 {
+  background: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-pink) 100%);
+}
+
+.genre-gradient-3 {
+  background: linear-gradient(135deg, var(--color-accent-pink) 0%, var(--color-primary) 100%);
+}
+
+/* Glass Morphism */
+.glass-card {
+  background: rgba(43, 46, 51, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hero Gradient */
+.hero-gradient {
+  background: linear-gradient(0deg, var(--color-background-dark) 0%, rgba(28, 28, 34, 0.8) 40%, rgba(28, 28, 34, 0) 100%);
+}

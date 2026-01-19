@@ -1,0 +1,300 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 0 0.5rem 0;
+  color: white;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.filters {
+  margin-bottom: 2rem;
+}
+
+.statusFilters {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.375rem;
+  border-radius: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.statusButton {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: capitalize;
+}
+
+.statusButton:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.statusButton.active {
+  background: white;
+  color: var(--color-background-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trackerItem {
+  background: var(--color-card-dark);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.trackerItem:hover {
+  border-color: rgba(71, 235, 235, 0.3);
+  background: rgba(255, 255, 255, 0.02);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.itemMain {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.poster {
+  width: 7rem;
+  height: 10rem;
+  flex-shrink: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.trackerItem:hover .poster img {
+  transform: scale(1.05);
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.animeTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+  color: white;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.studio {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 0;
+  font-weight: 500;
+}
+
+.controlsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controlGroup label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.05em;
+}
+
+.statusSelect,
+.ratingSelect,
+.progressInput {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.statusSelect:hover,
+.ratingSelect:hover,
+.progressInput:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(144, 255, 255, 0.3);
+}
+
+.statusSelect:focus,
+.ratingSelect:focus,
+.progressInput:focus {
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.progressInputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progressInput {
+  width: 3.5rem;
+  text-align: center;
+}
+
+.progressDivider {
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 300;
+}
+
+.totalEpisodes {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+}
+
+.statusBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.375rem 1rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom-left-radius: 0.75rem;
+  color: var(--color-background-dark);
+}
+
+.status-watching {
+  background: #47ebeb;
+  color: #0f172a;
+}
+
+.status-completed {
+  background: #47eb8d;
+  color: #0f172a;
+}
+
+.status-on-hold {
+  background: #ebeb47;
+  color: #0f172a;
+}
+
+.status-dropped {
+  background: #eb4747;
+  color: #ffffff;
+}
+
+.status-plan-to-watch {
+  background: #9047eb;
+  color: #ffffff;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  padding: 6rem 2rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.empty p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .itemMain {
+    flex-direction: column;
+  }
+
+  .poster {
+    width: 6rem;
+    height: 9rem;
+  }
+
+  .controlsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 2rem 5rem 4rem;
+  }
+}

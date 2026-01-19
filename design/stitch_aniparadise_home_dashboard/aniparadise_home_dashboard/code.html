@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniParadise Home Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#47ebeb",
+                        "accent-purple": "#C580E6",
+                        "accent-pink": "#E680BC",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#1c1c22",
+                        "card-dark": "#2B2E33",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Spline Sans', sans-serif;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(71, 235, 235, 0.3);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        .genre-gradient-1 { background: linear-gradient(135deg, #47ebeb 0%, #C580E6 100%); }
+        .genre-gradient-2 { background: linear-gradient(135deg, #C580E6 0%, #E680BC 100%); }
+        .genre-gradient-3 { background: linear-gradient(135deg, #E680BC 0%, #47ebeb 100%); }
+        
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-4">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined font-bold">movie_filter</span>
+</div>
+<h2 class="text-2xl font-800 tracking-tighter uppercase italic">Ani<span class="text-primary">Paradise</span></h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold text-sm uppercase tracking-widest" href="#">Home</a>
+<a class="hover:text-primary transition-colors text-sm uppercase tracking-widest font-medium" href="#">Browse</a>
+<a class="hover:text-primary transition-colors text-sm uppercase tracking-widest font-medium" href="#">Tracker</a>
+<a class="hover:text-primary transition-colors text-sm uppercase tracking-widest font-medium" href="#">Discussions</a>
+<a class="hover:text-primary transition-colors text-sm uppercase tracking-widest font-medium" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="bg-slate-200 dark:bg-card-dark border-none rounded-full pl-10 pr-4 py-2 w-64 focus:ring-2 focus:ring-primary transition-all text-sm" placeholder="Search anime..." type="text"/>
+</div>
+<div class="flex gap-3">
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 lg:px-20 py-8 space-y-12">
+<!-- Hero Section -->
+<section class="relative rounded-3xl overflow-hidden min-h-[500px] flex items-end p-8 lg:p-16">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent z-10"></div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Cinematic cyberpunk anime landscape with neon lights" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkaIhqzzWvAyN6SO3dahMi7DlzjVQrW11VS4SqqtwQ3SbirN1gCvW549ODshQmg_AqhORM_fWGt36X3dABWAg7zCsQNLIMkJ-HLcztNGxWM7aAur44zX2dGpZaJyH6qagqW2_Dzz1nI5i79hgTYdJRZBMhooLzNyz7YkqvyG0aeLMNVDTf6pgKNcnA2CK_F4xFbKWnUV34E6RUKLrL-MdC9k5kiYTMbfQGRGsf-mFANKwtp7pgjHtcwxVntdqGKKjttM0X8RsLXisC');">
+</div>
+</div>
+<div class="relative z-20 max-w-2xl space-y-6">
+<span class="bg-primary/20 text-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-primary/30">New Season Live</span>
+<h1 class="text-5xl lg:text-7xl font-black leading-none tracking-tight">
+                    Discover Your <br/><span class="text-primary italic">Next Favorite</span> Anime
+                </h1>
+<p class="text-lg text-slate-300 max-w-md">
+                    Track your progress, explore seasonal hits, and join a global community of fans. Your journey starts here.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary text-background-dark font-bold px-8 py-4 rounded-xl flex items-center gap-2 glow-hover">
+<span class="material-symbols-outlined">play_arrow</span>
+                        Start Tracking
+                    </button>
+<button class="bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/20 transition-all font-bold px-8 py-4 rounded-xl">
+                        Explore Browse
+                    </button>
+</div>
+</div>
+</section>
+<!-- Trending Now Carousel -->
+<section class="space-y-6">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-3xl font-bold tracking-tight flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">trending_up</span>
+                    Trending Now
+                </h2>
+<a class="text-primary text-sm font-bold uppercase tracking-wider flex items-center gap-1 hover:underline" href="#">
+                    View All <span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+</div>
+<div class="flex overflow-x-auto gap-6 no-scrollbar pb-4 -mx-2 px-2">
+<!-- Trending Card 1 -->
+<div class="flex-none w-72 space-y-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-end p-6">
+<button class="bg-primary text-black w-full py-3 rounded-lg font-bold">Add to List</button>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Dynamic action anime character poster" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDBiqe64GJr0oXHKkb48rQZCzJj4M2VUU23xfFJWk39e8Paf3aHMLtNX5rtDUWJwUzaClmvrjZEj3BQ9b4fNVoyYMS9ubhVkaFaJ4mN8yNMLp5TsoXofwI-yVGwtWjDS3KbsX6Cme-JASXSJor-lk9sfJ3oX5maKvRq8V829oYe9fK0WNOKJr4PFeB1wSKwbwcDQMwJHL4fJdnfXADQS_lCa_E8myq5OWCLW1VKLKnGyVqF8gqedHqsP4vKa0PzUP4UFdrOZAuCjA2v');"></div>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center gap-1 z-20">
+<span class="material-symbols-outlined text-xs fill-1">star</span> 4.9
+                        </div>
+</div>
+<div>
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Neo Genesis: Reborn</h3>
+<p class="text-sm text-slate-400 font-medium italic">Cyberpunk, Mecha, Seinen</p>
+</div>
+</div>
+<!-- Trending Card 2 -->
+<div class="flex-none w-72 space-y-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-end p-6">
+<button class="bg-primary text-black w-full py-3 rounded-lg font-bold">Add to List</button>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Anime scenery of a traditional Japanese street at night" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFsWO0IovmaFYBYBjw4hNqEgjiQ2WujSyZIWSgEuGgorcyWqkvUViFA8jX-4CG25q-XVCadY6HtuxihNflCBBf0xxGNbJY9fYaOFfRkL7yGCwP5_2pWSoQ06mGZHBbxnWqQNtAHZ_5W3RQvmk3ZpoKdzgB1L892WRx0DBzYJs40VYjUoFmirQgaAECuM6W1ZYM-qxID_AsEGIF_8arr7pq_umPeoyr1duCbDvUCiqBJF2sr5jqbpD6slrICaF5596PKiTbPPLcOARN');"></div>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center gap-1 z-20">
+<span class="material-symbols-outlined text-xs fill-1">star</span> 4.7
+                        </div>
+</div>
+<div>
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Twilight Chronicles</h3>
+<p class="text-sm text-slate-400 font-medium italic">Fantasy, Mystery, Slice of Life</p>
+</div>
+</div>
+<!-- Trending Card 3 -->
+<div class="flex-none w-72 space-y-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-end p-6">
+<button class="bg-primary text-black w-full py-3 rounded-lg font-bold">Add to List</button>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Stylized anime girl with headphones illustration" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByzAiRSbU6Kc748H8zIiR15N7TeQmNBd2DsxHqK9WLZgM6mI5JuVMwNmyaCnzEA6mcUsTliIsxTTmz9Mks6z2U_y1jmG2M5upYLZtkSrYeK2tmE2xecRAkdRX8_S1ODmyPZh1N5Ja0r8BPjNSE4fATX15k-Nu_jry85-A4jLyqpyTQ5KXdeJrrFvW7_o-K4FuhOLLjHZ_TshX9NZ7ZYbmaTR2VW1bnxw175uXPTABVsK23RUZBaEPZW2dYVk4eELuyeoL8qwU7rfWV');"></div>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center gap-1 z-20">
+<span class="material-symbols-outlined text-xs fill-1">star</span> 4.8
+                        </div>
+</div>
+<div>
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Vibe Check: Resonance</h3>
+<p class="text-sm text-slate-400 font-medium italic">Music, Drama, Youth</p>
+</div>
+</div>
+<!-- Trending Card 4 -->
+<div class="flex-none w-72 space-y-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-2xl overflow-hidden relative shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-end p-6">
+<button class="bg-primary text-black w-full py-3 rounded-lg font-bold">Add to List</button>
+</div>
+<div class="w-full h-full bg-cover bg-center" data-alt="Epic fantasy landscape with floating islands" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRXVy_RJkxs_2pIZ4DV60WlYJtzUVwNfNZ8HzLeIHMXwAtTsTbrY20sfzdPmnDEgEzRTt7IXzAFSnmr8bRygwUtGlW63HnP0iHrthESYq9CNmYiDoLVJFz3gOYFKX0orP1Em1HL_WS1vK-1Go-HUuZnsHFED5Cuppu9nwt9AEZSoC7CHB5sh6tW50pxyVDWRK9OQY8ZX0NmwxhvgpmrzViwrkjBExUgb992SOQBTC2e5H8T0jQivVolRjN7gBGT1NuSX6KyOdAn6cJ');"></div>
+<div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center gap-1 z-20">
+<span class="material-symbols-outlined text-xs fill-1">star</span> 4.5
+                        </div>
+</div>
+<div>
+<h3 class="font-bold text-lg group-hover:text-primary transition-colors">Aether Bound</h3>
+<p class="text-sm text-slate-400 font-medium italic">Adventure, Isekai, Magic</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Genres -->
+<section class="space-y-6">
+<h2 class="text-3xl font-bold tracking-tight px-2 flex items-center gap-3">
+<span class="material-symbols-outlined text-accent-purple">category</span>
+                Popular Genres
+            </h2>
+<div class="flex flex-wrap gap-4 px-2">
+<button class="genre-gradient-1 px-8 py-4 rounded-2xl text-background-dark font-black uppercase tracking-tighter text-xl shadow-lg hover:scale-105 transition-transform">Shonen</button>
+<button class="genre-gradient-2 px-8 py-4 rounded-2xl text-background-dark font-black uppercase tracking-tighter text-xl shadow-lg hover:scale-105 transition-transform">Cyberpunk</button>
+<button class="genre-gradient-3 px-8 py-4 rounded-2xl text-background-dark font-black uppercase tracking-tighter text-xl shadow-lg hover:scale-105 transition-transform">Slice of Life</button>
+<button class="genre-gradient-1 px-8 py-4 rounded-2xl text-background-dark font-black uppercase tracking-tighter text-xl shadow-lg hover:scale-105 transition-transform">Mecha</button>
+<button class="genre-gradient-2 px-8 py-4 rounded-2xl text-background-dark font-black uppercase tracking-tighter text-xl shadow-lg hover:scale-105 transition-transform">Psychological</button>
+<button class="genre-gradient-3 px-8 py-4 rounded-2xl text-background-dark font-black uppercase tracking-tighter text-xl shadow-lg hover:scale-105 transition-transform">Sports</button>
+</div>
+</section>
+<!-- Latest Discussions Feed -->
+<section class="space-y-6">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-3xl font-bold tracking-tight flex items-center gap-3">
+<span class="material-symbols-outlined text-accent-pink">forum</span>
+                    Latest Discussions
+                </h2>
+<button class="text-accent-pink font-bold flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-pink/10 border border-accent-pink/20">
+<span class="material-symbols-outlined">add</span> New Topic
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+<!-- Discussion Card 1 -->
+<div class="bg-white dark:bg-card-dark p-6 rounded-2xl border border-white/5 space-y-4 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="size-10 rounded-full border-2 border-primary" data-alt="Avatar of a male user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcqsXrTK8yx1E89EGM98QB6CERZqbs5OjE8r6FEdbtu8Zv7ZsXOysq4EW8yxm-ffNeygTwQ3aUe7UwcbUqoZKtdYlqFz6JmPHXg3FdZe0H1ANFesv6bP-OhDMaptVK5SA84BSV-LhDmbXKnyBN5xV8USqjjeS9WsmyD6dBKiBQUwGON9tvy4aoU9y0jHQTKPRlEXbD5T_n8QxNLSP9yUeUuV-N4tCm4V7IsiAXTtmmNLSpeK_g-VUEuzjCI_K4qkrQRpIFLJKv7uU6"/>
+<div>
+<p class="text-sm font-bold">Takumi_Art</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">2 hours ago</p>
+</div>
+</div>
+<h4 class="text-lg font-bold leading-tight group-hover:text-primary transition-colors">Is the season finale of "Neo Genesis" actually better than the manga?</h4>
+<div class="flex items-center gap-4 text-xs text-slate-400 font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 42 comments</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">favorite</span> 128 likes</span>
+</div>
+</div>
+<!-- Discussion Card 2 -->
+<div class="bg-white dark:bg-card-dark p-6 rounded-2xl border border-white/5 space-y-4 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="size-10 rounded-full border-2 border-accent-purple" data-alt="Avatar of a female user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz0TyMh_YeAO4ZPcDnJCwzJw7sgRAvTwm4QlC_0dPEQmCESdv8IDndvMXNDvFKVDq2tXJSo45OSOwRP93gtUgsKRCXw_09p8J1PhIBAEJ2gf8GlKmJ6Xh3AkHAk5ALZBkOCb4m4FHNjFnqH2uiwSsC64FZXgAu1Jdn3jQ75-KXuQQmvBr6PAbeY_Lxt72a5_JDBIULz-x0yuDhAwLq1MoRTQ_Kfl807Oyq6szoU6lpk507LQnzdqPHZ2B4Utg_yMEsyFYjdtvBLprN"/>
+<div>
+<p class="text-sm font-bold">SakuraDreams</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">5 hours ago</p>
+</div>
+</div>
+<h4 class="text-lg font-bold leading-tight group-hover:text-primary transition-colors">Best Animation of 2024: My Top 5 Picks for Studio Ufotable Lovers</h4>
+<div class="flex items-center gap-4 text-xs text-slate-400 font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 89 comments</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">favorite</span> 312 likes</span>
+</div>
+</div>
+<!-- Discussion Card 3 -->
+<div class="bg-white dark:bg-card-dark p-6 rounded-2xl border border-white/5 space-y-4 hover:border-primary/50 transition-colors cursor-pointer group">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="size-10 rounded-full border-2 border-accent-pink" data-alt="Anime style user avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2deMdABWhv-2V2_kqtJr6h3dFqVMhfcyCANuRxDNQgNnemoW_RyAyzBStMehkLPlj8E_Hyzn-LRZwzasm6Z6F2Nx4hT75pM2-EnyYSeP6LEg-In9zx3nSqOThbAw7XmHD1bCeVRLyG0WHICgk8qheJxLq1SGuF7sjpUYarLC-krqAMF71P2M8JsTLvT833gcCqSrCBMXB5D2aOIYBS34ySHDPaMHwPjFN8k07hJ7f6dSHdm7n363FSjFmGV9ZnO6kYyVVMoRTP8xd"/>
+<div>
+<p class="text-sm font-bold">CyberGhost</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Just now</p>
+</div>
+</div>
+<h4 class="text-lg font-bold leading-tight group-hover:text-primary transition-colors">Hidden Gems: Why you shouldn't skip the "Aether Bound" series this month</h4>
+<div class="flex items-center gap-4 text-xs text-slate-400 font-medium">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 15 comments</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">favorite</span> 45 likes</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-white/10 bg-white dark:bg-card-dark/30 py-12 px-6 lg:px-20">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined font-bold text-sm">movie_filter</span>
+</div>
+<h2 class="text-xl font-800 tracking-tighter uppercase italic">Ani<span class="text-primary">Paradise</span></h2>
+</div>
+<p class="text-slate-500 text-sm">© 2024 AniParadise Media Group. All rights reserved.</p>
+</div>
+<div class="flex gap-8 text-sm font-medium text-slate-400 uppercase tracking-widest">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+<a class="hover:text-primary transition-colors" href="#">Discord</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniParadise My Tracker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#47ebeb",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#1c1c22",
+                        "card-dark": "#2B2E33",
+                        "accent-purple": "#C580E6",
+                        "accent-pink": "#E680BC",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Spline Sans', sans-serif;
+        }
+        .neo-glow {
+            box-shadow: 0 0 15px rgba(71, 235, 235, 0.3);
+        }
+        .bg-gradient-blob {
+            background: radial-gradient(circle, rgba(197, 128, 230, 0.1) 0%, rgba(28, 28, 34, 0) 70%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen relative overflow-x-hidden">
+<!-- Decorative background elements -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-gradient-blob pointer-events-none"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-gradient-blob pointer-events-none"></div>
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-10 py-3 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl font-bold">rocket_launch</span>
+</div>
+<h2 class="text-xl font-extrabold leading-tight tracking-tight uppercase italic">AniParadise</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Discover</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Manga</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Community</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">My Tracker</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-slate-400 flex border-none bg-slate-100 dark:bg-slate-800 items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-slate-100 dark:bg-slate-800 placeholder:text-slate-400 px-4 rounded-l-none pl-2 text-sm font-normal" placeholder="Quick search..." value=""/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-white hover:bg-primary/20 hover:text-primary transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-xl h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-white hover:bg-primary/20 hover:text-primary transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="User avatar profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAMrikv-Hs51iOudzxaawjTM7gfMcdV3eXt0jhuF--9iVlGt5UCte2OGWdnPeiYk2EdqNKtxwVwHIGygsRxW4LPl7nDHYkm2KOFJdGn4WYgg0_I8NFqsq9H_F9aBGWYoNskvRXpYCls8RKMU3-ZRqMf7Vqwq-ejehjyKIMKVRHaWCxP__wWn5OUdQwDpnoeNJmPLVoBqkKxJvUvB_-37RgfK6pWcgXqy6BU6ddcf4sN7Rh5LijWF_5g1lEbAAMoAe2667JS7sgKv-aX");'></div>
+</div>
+</header>
+<main class="px-6 md:px-20 lg:px-40 flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[1200px] flex-1 gap-6">
+<!-- Page Heading & Stats -->
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-5xl font-black leading-tight tracking-tight">My Tracker</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg">Syncing with Neo-Tokyo servers... <span class="text-primary font-mono">ONLINE</span></p>
+</div>
+<!-- Quick Stats Component -->
+<div class="flex flex-wrap gap-4 w-full lg:w-auto">
+<div class="flex flex-1 lg:min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-card-dark border border-slate-200 dark:border-slate-800">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">Episodes</p>
+<p class="text-slate-900 dark:text-white text-2xl font-black">1,248</p>
+</div>
+<div class="flex flex-1 lg:min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-card-dark border border-slate-200 dark:border-slate-800">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">Days</p>
+<p class="text-slate-900 dark:text-white text-2xl font-black">24.5</p>
+</div>
+<div class="flex flex-1 lg:min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-primary/10 border border-primary/30">
+<p class="text-primary text-xs font-bold uppercase tracking-wider">Mean Score</p>
+<p class="text-primary text-2xl font-black">8.9</p>
+</div>
+</div>
+</div>
+<!-- Filters & Controls -->
+<div class="flex flex-col md:flex-row gap-4 items-center">
+<!-- Segmented Buttons -->
+<div class="flex h-12 w-full md:w-[450px] items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 p-1.5">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:text-primary has-[:checked]:shadow-sm text-slate-500 dark:text-slate-400 text-sm font-bold transition-all">
+<span class="truncate">Watching</span>
+<input checked="" class="invisible w-0" name="tracker-filter" type="radio" value="Watching"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:text-primary has-[:checked]:shadow-sm text-slate-500 dark:text-slate-400 text-sm font-bold transition-all">
+<span class="truncate">Completed</span>
+<input class="invisible w-0" name="tracker-filter" type="radio" value="Completed"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-lg px-2 has-[:checked]:bg-white dark:has-[:checked]:bg-background-dark has-[:checked]:text-primary has-[:checked]:shadow-sm text-slate-500 dark:text-slate-400 text-sm font-bold transition-all">
+<span class="truncate">On Hold</span>
+<input class="invisible w-0" name="tracker-filter" type="radio" value="On Hold"/>
+</label>
+</div>
+<!-- Search Bar in list -->
+<div class="flex-1 w-full">
+<label class="flex flex-col h-12 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full border border-slate-200 dark:border-slate-800 focus-within:border-primary transition-colors">
+<div class="text-slate-400 flex bg-white dark:bg-card-dark items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined">filter_list</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-white dark:bg-card-dark text-slate-900 dark:text-white focus:ring-0 h-full placeholder:text-slate-500 px-4 rounded-r-xl text-base font-medium" placeholder="Filter list by name..." value=""/>
+</div>
+</label>
+</div>
+</div>
+<!-- Anime List -->
+<div class="flex flex-col gap-4">
+<!-- List Item 1 -->
+<div class="group flex flex-col md:flex-row items-center gap-6 p-4 bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:translate-y-[-2px]">
+<div class="relative w-full md:w-32 h-44 md:h-32 shrink-0 rounded-lg overflow-hidden border-2 border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Chainsaw Man anime poster art" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtxk5nXaJfp6uITqH-vYV-gRiSxS6FxiF1REy7pvxFdJbVBm0ziYR3a5JEypQj8MS5Sq-WvAQ5feVhTjd67HikZ8hgCF_Op-FM7jKx9VsVAntt63eExwnbNJHgbAkRjZnm-tSjMBagKd81fDzC6rQCw_VBAA1rjMrcAJn1tjpWMM6fVXCK0Fb-Bk5Je8uOoWzMbAjtmqFSFAKIWm-vzNhm9ts6oOsb0d_0Q-VRVHGVn8_yNH6Z8BEMA0grsZIK5vlyyGAt40B5RgNA');"></div>
+<div class="absolute bottom-1 right-1 bg-background-dark/80 backdrop-blur-sm text-primary text-[10px] font-bold px-1.5 rounded uppercase">TV</div>
+</div>
+<div class="flex flex-col flex-1 gap-2 w-full">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Chainsaw Man</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">MAPPA • Fall 2022</p>
+</div>
+<div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">star</span>
+<span class="text-xs font-bold">9.2</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 mt-2">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span class="text-slate-600 dark:text-slate-300">Progress: <span class="text-primary">08</span> / 12 episodes</span>
+<span class="text-slate-400 italic">Next: Episode 09 (Tomorrow)</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full neo-glow" style="width: 66%"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-row md:flex-col gap-2 w-full md:w-auto">
+<button class="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg bg-primary text-background-dark font-bold text-sm hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Episode
+                            </button>
+<button class="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+                                Edit
+                            </button>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="group flex flex-col md:flex-row items-center gap-6 p-4 bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:translate-y-[-2px]">
+<div class="relative w-full md:w-32 h-44 md:h-32 shrink-0 rounded-lg overflow-hidden border-2 border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Neon Genesis Evangelion art" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdjE29cxfLwTbUnzvBftxNYt1UIxpbQ_vqP-fmJXirCdWwcla1fZH-bQH3P-3CouUP69G-9LBUKGuIRhB_UVMH459RcKGKMMEPu9clQx9UKk1vBL482-vYW_6_UyZSVZ1jTQzt5wSdPjFgpqiq1vrCUycHJVI5sz1lP1DevG6UJ4Ofs4Z6w-g0Th34-uuVjl1B8MjdNIMLbhkZOpyg11TX1-zfW92a7YwXy-T6IFb0Xlre3bB_gmp5pbdelWuo4elNyeUVeSzP3jmd');"></div>
+<div class="absolute bottom-1 right-1 bg-background-dark/80 backdrop-blur-sm text-primary text-[10px] font-bold px-1.5 rounded uppercase">Movie</div>
+</div>
+<div class="flex flex-col flex-1 gap-2 w-full">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Evangelion: 3.0+1.0 Thrice Upon a Time</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Studio Khara • 2021</p>
+</div>
+<div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">star</span>
+<span class="text-xs font-bold">9.8</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 mt-2">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span class="text-slate-600 dark:text-slate-300">Progress: <span class="text-primary">01</span> / 01 film</span>
+<span class="text-primary font-mono text-[10px] uppercase">Rewatching</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full neo-glow" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-row md:flex-col gap-2 w-full md:w-auto">
+<button class="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg bg-primary/20 text-primary font-bold text-sm hover:bg-primary/30 transition-all">
+<span class="material-symbols-outlined text-sm">history</span>
+                                Rewatch
+                            </button>
+<button class="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+                                Edit
+                            </button>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="group flex flex-col md:flex-row items-center gap-6 p-4 bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all hover:translate-y-[-2px]">
+<div class="relative w-full md:w-32 h-44 md:h-32 shrink-0 rounded-lg overflow-hidden border-2 border-slate-200 dark:border-slate-700">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Cyberpunk Edgerunners art" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBu7zrFqPrJIxgURqxp9o4Drv9nswnFEjCSedUBnGMAuiz-zI0g88K_hW94tHSnEGvxq3T8WupszKDapcRQdh9-GgBaoZkKG5odkiLFNGe9Iall-bkt80C6y5HLkMTKrAWCWcg4jaNgFp8_yglKeB3s-AqyEMdof_1GPq53eD8uuu1sTOaBRULQNAveL4GxweO6wdyUVNzEmgayUf4G5KNPssxj6-8yUwYodZ-LZSlOt2wsQuyPoRVrVXRH04w1wixgYuJlQy6pt5fN');"></div>
+<div class="absolute bottom-1 right-1 bg-background-dark/80 backdrop-blur-sm text-primary text-[10px] font-bold px-1.5 rounded uppercase">ONA</div>
+</div>
+<div class="flex flex-col flex-1 gap-2 w-full">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">Cyberpunk: Edgerunners</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Studio Trigger • Fall 2022</p>
+</div>
+<div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-primary text-sm">star</span>
+<span class="text-xs font-bold">9.0</span>
+</div>
+</div>
+<div class="flex flex-col gap-1 mt-2">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span class="text-slate-600 dark:text-slate-300">Progress: <span class="text-primary">10</span> / 10 episodes</span>
+<span class="text-green-500 flex items-center gap-1"><span class="material-symbols-outlined text-xs">check_circle</span> COMPLETED</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full neo-glow" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-row md:flex-col gap-2 w-full md:w-auto">
+<button class="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-400 font-bold text-sm cursor-not-allowed">
+<span class="material-symbols-outlined text-sm">done_all</span>
+                                Finished
+                            </button>
+<button class="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+                                Edit
+                            </button>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="flex justify-center mt-6">
+<button class="px-8 py-3 rounded-xl border border-primary/30 text-primary font-bold hover:bg-primary/10 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">expand_more</span>
+                        Load more entries
+                    </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="border-t border-slate-200 dark:border-slate-800 py-8 px-10 text-center">
+<div class="flex flex-col items-center gap-4">
+<div class="flex items-center gap-2 text-primary/50">
+<span class="material-symbols-outlined">rocket_launch</span>
+<span class="font-bold tracking-tighter uppercase italic">AniParadise</span>
+</div>
+<p class="text-slate-500 text-sm">Built for the next generation of Otaku. © 2024 AniParadise Neo-Tokyo.</p>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary transition-colors text-xs font-bold uppercase" href="#">Terms</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-xs font-bold uppercase" href="#">Privacy</a>
+<a class="text-slate-400 hover:text-primary transition-colors text-xs font-bold uppercase" href="#">API</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

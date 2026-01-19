@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniParadise | Browse Anime</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#47ebeb",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#1c1c22",
+                        "surface-dark": "#2b2e33",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Spline Sans', sans-serif;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 20px rgba(71, 235, 235, 0.2);
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2b2e33;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #47ebeb;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-background-dark overflow-x-hidden custom-scrollbar">
+<!-- Atmospheric Background Elements -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute top-[60%] -right-[5%] w-[30%] h-[50%] bg-[#C580E6]/5 blur-[120px] rounded-full"></div>
+</div>
+<!-- Sticky Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-3 shrink-0">
+<div class="size-10 bg-primary flex items-center justify-center rounded-lg shadow-[0_0_15px_rgba(71,235,235,0.4)]">
+<span class="material-symbols-outlined text-background-dark font-bold">bolt</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight hidden md:block">AniParadise</h1>
+</div>
+<!-- Search Bar -->
+<div class="flex-1 max-w-2xl">
+<label class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full h-12 bg-slate-200/50 dark:bg-white/5 border-none focus:ring-2 focus:ring-primary/50 rounded-xl pl-12 pr-4 text-sm transition-all placeholder:text-slate-500" placeholder="Search for your next favorite anime..." type="text"/>
+</label>
+</div>
+<!-- Nav Links -->
+<nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+<a class="text-primary hover:text-primary transition-colors" href="#">Browse</a>
+<a class="hover:text-primary transition-colors" href="#">Manga</a>
+<a class="hover:text-primary transition-colors" href="#">Community</a>
+<a class="hover:text-primary transition-colors" href="#">My List</a>
+</nav>
+<!-- User Actions -->
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-primary/10 hover:text-primary transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/20 p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="User profile avatar with neon border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWg3qVZvYZyYe5woWOJZVDyPM_SDjvDlxloMeW1VidSmPx4VsR_xXpFm1Sii5ygV7zDNT0vQld2x0a1PCnCdZJLEqHxeIJfpCY6LZmZPe_0xCBM6nBe9VJHRdvPWyuGjwa3WNp6CiOP4A0ong9NEa91rvIcfAvDaO06mpfwNFNEGZ1xrdxk7qP5E1igxfixYqN96fI_QPqNuUxFMPfoArMDdz1W8K6Gh7ZoTtS41PJgXKZs9EZrhXw4L97YXjvqbB_ql-rcWeEgcjv"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1400px] mx-auto px-6 py-8">
+<!-- Filter Ribbon Section -->
+<section class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">filter_list</span>
+                    Popular Genres
+                </h2>
+<button class="text-sm text-primary font-medium hover:underline">View All</button>
+</div>
+<div class="flex gap-3 overflow-x-auto pb-4 no-scrollbar">
+<button class="px-6 h-10 rounded-xl bg-primary text-background-dark font-bold text-sm whitespace-nowrap shadow-[0_0_15px_rgba(71,235,235,0.3)]">All Genres</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Action</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Romance</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Sci-Fi</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Adventure</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Fantasy</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Comedy</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Drama</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Horror</button>
+<button class="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">Cyberpunk</button>
+</div>
+</section>
+<!-- Anime Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+<!-- Card 1 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Futuristic cybernetic hearts anime cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOOLcDUYc7O_QUXy7j6NxrEXJqbXXzRvL1DJoVviHK5l1jdmnom-ZkdF7kI1vFQBPjeRe_50aT3Y3DcpNsxT2oCU29O28G4afi3BnvMa0EjVf1riA9X7-2Mi06fSfYgBl1FlCV8g4BoMYRaIy7qTbT2ww4nx2sAC5hauBsKeTam1JOeOveksFWEazHg5k-4QTE5Xjzw7McchbuAQb5CbOKGjq6V8bc3FVHjmeng1YNebg4c1bGR9CJLS946qi2dWb429egZJCJK-K3"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">8.9</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Cybernetic Hearts</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Studio Nexus • 2024</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Neon vanguard cyberpunk street scene" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSNOkcaFlDln3aZYY0C3iZnLzweEgU7rc23mR8PPHob5cGBv9kpfnHvXDP6ArPL8XqClmrstvSBuQ2ah7fSLFX2QzitagMC3EsM3O50Ij6Vk_twrkQJz8dYH7-T96Dbd7NpoxtW9MQ6uV6smYXu2OWVGPqxVS3ATdnpXfghABk2r_3gp9TVe7WWVHOEhck5TbVuFM2wqiMPVpHcuSLZfp2-W8pBhEdE2Q0_jpJAcRx9FP6rBikpyF_Nzx_E7pzsooR-6Qj8mVXMyNy"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">9.2</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Neon Vanguard</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Lightray Studio • 2023</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Starlight echoes cosmic space anime" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZo5TplcMg_STZYoxTavethTWW6ZesAHaapA3JoKw8I_C5FHiuUs_tP_Vnpi0bx9fmPJ1n5nc3xphcs-nz7YxxHqg2u4TtXa2G_mgZhDFqyERsGwHRDYPtFKaVOD0y4SkNJb47fEdjamxvVyiK48JcDv1r5VdCqpfxib4bKOlUt1K8WOJyHq98cSniPNspF08tCl9zecke0AMT2x90m7gd8IjcGihc_0dPTtXhservcBZu427GBeYrjatxkdWfP1KTAZG1obEiMwg9"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">8.5</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Starlight Echoes</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Astra Visuals • 2024</p>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Whisper of the blade samurai artwork" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTX1M59KTB0SdBKs6RhbN6KB88xiw-MdKOyYpcPtx2cXM9Vfmxer7v__YPBD5ewN6jxAlQnpK3zmB_nn5l9d_HHU-8tWaQLipvCP8EMJviUFgXClaH6dGLYq8x9wKwOgHcZnBbbLr52gDWPPdMymacR7XA0jWUC8nmOtOrQdDiy3pG88TNgOtV7xNgCWFpw49_wDdRt_L3J8mHgJzfRNQzfroRFQgwtm2eA_R9vsbp0p1q3mFTcvg-w4u6U84MICLsHQBmMsFmdP3-"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">9.5</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Whisper of the Blade</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Zenith Animation • 2024</p>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Void walkers dark fantasy character" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwTQFxZ_py4RHRG_URtIKZE0WRSwg2hmxRAKgjhmBiXAWSvMvsKVztKkbUydbdiaYDIhzIi1ILq6VRctqhVyR4d956f2QJ6g9yk_lHZrUZHK6bZfSmqFrFODvGMh5TEG9rTjWyHKkiSVFcjT1jnwE6Ep_AF9zp4QVol92G-JnatHblqcS5jRDg4wlDTsQe2kM_SNTWL1_dwgIppwjkEk8B6kcMk5y7yf7WpFmGdg9H4-CS7aF3Q-dZ3oXrHqgkOPh5VCWqLy7JHTa2"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">7.8</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Void Walkers</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Abyssal Works • 2023</p>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Spirit bound mystical forest scene" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfbVeuNX7KwQU8VC8xyllxzC0BIyKUR7w50Khyr33ACcRv4H7ttJG4_lXEMfxsMvcxdHh5VcgdhK_w1YJS8nqV18eiAJD_AnHgDVQUctvhHV2epRtnZI-nC9zhPOImjr4E1RG1nhHetGs1gLM9qKPBqOiS7vqHbGtbOokCaWqPJxDxhhe2MNUwMf1VZKosssfJ88NfOG0pEhLngVHsByqKBNZ2MwAxabBC-K7m4ZSRpkHJv1_Kv7F_Fs5Ipn7XDIO7tR79vXSVkZmN"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">8.1</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Spirit Bound</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Naturel Art • 2024</p>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Midnight protocol hacker interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKxhBgb5IZI3vZrSahLuauT1LtjYDqBdUZolH7z26tT4wGv7eQVZkPAQl8lo9Qwpzw_ZHxE_1QtKNfkMeoVV7zjMwrU6C0-ZLsr1AgCJVjblX20xyul4TSGv8XaG3gWXr4ajbfN8QlFhKA9UtzshjQ_N29F6qhNEH1qNgL2KhQt6zikIj1JZXMyyiKjQ6i7LpzB3sMDFR3RPtEEHwnfwg2Ma8Bfw-8wyT5GyHQveRlUQ1p__wLbflNQI_hJ_Qgg0-vY9VQ442Cnx3W"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">8.4</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Midnight Protocol</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Cipher Films • 2024</p>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Azure horizon seaside landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB24gbPh_HMZuMRrypKPAERlGOz7sBk31V1fdXPLaGQaCHN8O8yIF7vZCr3FO1dwOIK9-QGtT7ZocfM6_bDauqb_zwjzedq8e8onIAsWKXRkAVfGbvs-bI6hr2bT_343A696sF5xjvFSOAt5G2XVEYemfLGXgVl7GQo2jTsuxo4mel5BfaowbQAlvfWUxV9VaRvmNYBUoUrz35D9r1e2KG1YDMrnK3zjIGKjsRlFh0z6qGXNoyDRMpOlxvpmcqzLEO7d8vtbam6AgJ2"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">8.7</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Azure Horizon</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Oceanic Dream • 2023</p>
+</div>
+</div>
+<!-- Card 9 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Crimson tide fantasy warfare" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD36qdiVoJjaRygnqn_Whqk7FcE932QRevSI3EZgGOV783IBephAeKPMDAJpVVaPDX2haZR6_A7OwjRHAVnjqhCwAlqgkD95GfH4qpbJcwLFbCudh__1f6ZVWm5wYN1UzjEdr23WAikFs1ITCCBvOF7N1kHIlr1VXmpj5Lw_768DIhRI-7biVHG3OW3eySe9O3vU8Ux_33sLixOdLAZ5bavQ_mqjbh2j7nfiSxC6Sbv8Wjye7eoeiFkLIvbi_PlRD4TK-tNwQ3hV9fk"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">8.2</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Crimson Tide</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">War Forge • 2024</p>
+</div>
+</div>
+<!-- Card 10 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Solaris gate golden city architecture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR-f74QQcE9g7VFUe_yVoVyDl0w_e-pvzb8QDUE7JtFS8m1PM25YEoMnTqBSr4ZegQNzvM9dpk4qHoAkNWWtzuRHViGdewvpf3THE3YpS-ABvHTcBXvb0rQXAnFSHDRnMMNWu0j5ll6I_8rzi92etsGniuiCXSerE9ahz5aR2r9xCQoBBDXSTY6yJoBpNKypE115QqjuIwdE8lvzOLTno5D4jxg0VkcAM6RFwjjyC37dUSMUX0nt-L2AV99kNtI04Nn-Bt4AO5MSz8"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">9.1</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Solaris Gate</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Dawnlight • 2024</p>
+</div>
+</div>
+<!-- Card 11 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Iron requiem mechanical armor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMX-VZqtHFrXKjrhUUS9aRyyWA83LLOdlIxJYxQ8m_sF0QSJTgz-0jbkSO6Ef5VMYyzC9UAqLGPhduPVsQPlVV2xq9ygjNiVQlYGfIBJ9mnRRLFnITmv2j5QeKgmQuBnIjh5WYbGp9yX2fXSFUlbQg2sw-KEFmZTa20Q6ISCqKqFWVvwh4cauwfSzULrQogdwmgSfkrq2Mcspz8tzs73NEbF0eIO7EcFBOFpaxsQI8IMQrnPhV463Mpr0jOD1Yy3Qz41YPSDTZxeIA"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">8.6</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Iron Requiem</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">MechaniCore • 2023</p>
+</div>
+</div>
+<!-- Card 12 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover cursor-pointer">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Lunar descent night sky aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA95Vho_CJ4TYYRm5owUu3cfoHaaPNn-Sb_k5N3Qwa5bdrAVCZ7HYcjknzYtqq04Zp34htbTCA9sOGw_m1MRHcIGomvN44l3ZvkVu_niNI6_yJWUO-cs1RnmgbPu3g_H0XfpakikEvvnYFHoONonWLoci9i2WCa5GDggKWdBvwPREImjPeE70n8ULFlLYpFcXU7hIGdR408tl9v7AjnJJGb-HK4douo-CrGLAo1NwniV2-llFVpUAtk_MdDXJxguYDffMLs205WEeLP"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+<span class="text-xs font-bold text-white">9.0</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">play_arrow</span>
+                            Watch Now
+                        </button>
+</div>
+</div>
+<div class="px-1">
+<h3 class="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">Lunar Descent</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Moonphase • 2024</p>
+</div>
+</div>
+</section>
+<!-- Load More Section -->
+<div class="mt-16 mb-20 flex flex-col items-center gap-6">
+<div class="flex items-center gap-4">
+<div class="h-[1px] w-20 bg-white/10"></div>
+<span class="text-xs text-slate-500 uppercase tracking-widest font-semibold">End of matches</span>
+<div class="h-[1px] w-20 bg-white/10"></div>
+</div>
+<button class="px-10 py-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-2xl flex items-center gap-3 transition-all group active:scale-95">
+<span class="text-sm font-bold">Show me more</span>
+<span class="material-symbols-outlined text-primary group-hover:translate-y-1 transition-transform">keyboard_double_arrow_down</span>
+</button>
+</div>
+</main>
+<!-- Floating Filter Toggle (Desktop) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="size-14 bg-gradient-to-br from-[#47ebeb] to-[#C580E6] rounded-full shadow-[0_10px_30px_rgba(71,235,235,0.4)] flex items-center justify-center text-background-dark active:scale-90 transition-transform">
+<span class="material-symbols-outlined font-bold">tune</span>
+</button>
+</div>
+</body></html>

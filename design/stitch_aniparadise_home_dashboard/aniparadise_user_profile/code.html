@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniParadise User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#47ebeb",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#1c1c22",
+                        "card-dark": "#2B2E33",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Spline Sans", sans-serif;
+        }
+        .neo-glow {
+            box-shadow: 0 0 15px rgba(71, 235, 235, 0.1);
+        }
+        .neo-glow-strong {
+            box-shadow: 0 0 20px rgba(71, 235, 235, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="mx-auto max-w-[1200px] px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="p-1.5 bg-primary rounded-lg">
+<svg class="size-5 text-background-dark" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight">AniParadise</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Discover</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Manga</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Community</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Lists</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group hidden sm:block">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="bg-slate-200 dark:bg-card-dark border-none rounded-xl py-2 pl-10 pr-4 text-sm w-64 focus:ring-1 focus:ring-primary placeholder:text-slate-500" placeholder="Search anime..." type="text"/>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-white/10">
+<button class="bg-primary text-background-dark text-xs font-bold px-4 py-2 rounded-lg neo-glow hover:neo-glow-strong transition-all uppercase tracking-wider">
+                            Profile
+                        </button>
+<div class="size-9 rounded-full bg-slate-300 dark:bg-card-dark border border-white/10 bg-cover bg-center" data-alt="User profile mini avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMvRUZArKRljo49AIsIhFJYvef-7Xv_fyoY3_py82c0dtDoJHP3_VxImGA8EHoANQm4mt8ADsgAQRPXWveY4vNVpvWsqzj4tiykxxxv6omZAxhw0Ay5yV3Ew8wxaV9HfDsdtTc3s65U4JyZOsUBhbw-4ulgIYnQispniXVY2acfEl8Cf7aTrIQVeUjbp4y1TtKU3vnubOPoaNGdTPRBT-8BCgvCnji2Bb6nXktTrgMIYzwp57JDbByGaoPqcakn3uqxCvNJi-BaEsd');"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="mx-auto max-w-[1200px] w-full px-6 py-10 flex flex-col gap-10">
+<!-- Profile Hero Section -->
+<section class="relative overflow-hidden rounded-xl bg-slate-100 dark:bg-card-dark p-8 border border-slate-200 dark:border-white/5">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<div class="w-full h-full bg-gradient-to-l from-primary to-transparent"></div>
+</div>
+<div class="relative flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
+<div class="flex flex-col md:flex-row items-center gap-8">
+<div class="relative">
+<div class="size-36 rounded-full border-4 border-primary/20 p-1">
+<div class="size-full rounded-full bg-cover bg-center border-2 border-primary" data-alt="Large user avatar portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBr4CfdMIG54xH8H0PCUVFUegcpH-ya0ZeO0nFr1wZ7dSZ2Vn1827MO25mR21H5KHPY2wBMfZ2qaHT7ZUcQCpM5P237CQ_mipVmx1aqQTBz-ipJ8F7V79W4FqTNjF0lhm4X-oyGhp00cDJJhya9LsTLIn18BuuB10ztLvamHC8MHHsXkAogpQjmc_ppD0v6DMXq5drLBomuGb4k0jIBuO9KMOSco0xV1HBV9V-c0b7n6f4PP-k0Umvtn8R7mbTnmdgiC8Zea2nlLuAP');"></div>
+</div>
+<div class="absolute bottom-2 right-2 size-6 bg-green-500 border-4 border-card-dark rounded-full"></div>
+</div>
+<div class="text-center md:text-left">
+<h1 class="text-4xl font-bold tracking-tight mb-2">Satoshi_Kun</h1>
+<div class="flex flex-wrap justify-center md:justify-start gap-4 text-slate-500 dark:text-slate-400 text-sm">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                                    Member Since Jan 2023
+                                </span>
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+                                    Anime &amp; Manga Enthusiast
+                                </span>
+</div>
+<p class="mt-4 max-w-md text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Curating the ultimate collection of cyberpunk and psychological thrillers. Always searching for the next masterpiece.
+                            </p>
+</div>
+</div>
+<button class="flex items-center gap-2 bg-slate-200 dark:bg-white/5 hover:bg-white/10 border border-slate-300 dark:border-white/10 px-6 py-3 rounded-xl transition-all font-semibold group">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+                        Edit Profile
+                    </button>
+</div>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-slate-100 dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-white/5 flex items-center gap-5 hover:border-primary/30 transition-colors group">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px] font-light">visibility</span>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Anime Watched</p>
+<p class="text-3xl font-bold">428</p>
+</div>
+</div>
+<div class="bg-slate-100 dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-white/5 flex items-center gap-5 hover:border-primary/30 transition-colors group">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px] font-light">menu_book</span>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Manga Read</p>
+<p class="text-3xl font-bold">1,250</p>
+</div>
+</div>
+<div class="bg-slate-100 dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-white/5 flex items-center gap-5 hover:border-primary/30 transition-colors group">
+<div class="size-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px] font-light">token</span>
+</div>
+<div>
+<p class="text-xs uppercase tracking-widest text-slate-500 mb-1">Top Genre</p>
+<p class="text-3xl font-bold">Cyberpunk</p>
+</div>
+</div>
+</section>
+<!-- Main Content Area: Recent Activity & Side Details -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Recent Activity Feed -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-2xl font-bold tracking-tight flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">bolt</span>
+                            Recent Activity
+                        </h2>
+<button class="text-sm font-medium text-primary hover:underline">View All</button>
+</div>
+<div class="space-y-3">
+<!-- Activity Item 1 -->
+<div class="bg-slate-100 dark:bg-card-dark/50 hover:bg-slate-200 dark:hover:bg-card-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 transition-all flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-cover bg-center flex-shrink-0 border border-white/10" data-alt="Anime thumbnail for Chainsaw Man" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnR_Iq1vXHBXX1jbzcPxdvVtaoqHwIYc3nYtHkhcwTjRhE1vOZqmkC3aKnMg8rnAPT68LoyOOQunL7LSOoD8KYQeazyjGzGubLvNVU9ZnmiJ5-gI_VG1Ydt_rzMT5119EHwEIwA_rPlIdEGZOxCfEe6xJYW5305jBqXh3hgwRenq7cMB7l945BEw-C59jwelu-WrYRdzvIenlauxiC8uVmeOoLLQPFDxZr1Zt-sSRskqxSegxl5sczFnIce4yhRyP3C9uPgW80h5bY');"></div>
+<div>
+<p class="font-bold leading-snug">Finished 'Chainsaw Man' Episode 12</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Marked as Completed</p>
+</div>
+</div>
+<div class="text-xs text-slate-500 font-medium">2 hours ago</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="bg-slate-100 dark:bg-card-dark/50 hover:bg-slate-200 dark:hover:bg-card-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 transition-all flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-cover bg-center flex-shrink-0 border border-white/10" data-alt="Manga cover for Akira" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG1qw4N21A59P_mWUbini-cVBxtlXnJbMkXwp4JAwkS99LM74aleUmLe8ZsRonNdU1lFpoUIJAqtc15ITN5H0D45a3itO0BDlHiycOFVd1G06TBPh2t43hmz1Mmsrk4yvms-AfejpV_neUNc8fIOo5_cQNXq-sbilqzLVm4DV7ZdQqWuXiWwgOaHJjbkGBLBkbr8TQZ_XgMmfYf4LKf4oKoqi_pIRDYR4TU8iaJ5vgF8VNYeHtSHoDnOsJccyyLxNfdy-X-UJN0K6M');"></div>
+<div>
+<p class="font-bold leading-snug">Read 'Akira' Chapter 14</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Updated Progress</p>
+</div>
+</div>
+<div class="text-xs text-slate-500 font-medium">5 hours ago</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="bg-slate-100 dark:bg-card-dark/50 hover:bg-slate-200 dark:hover:bg-card-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 transition-all flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-cover bg-center flex-shrink-0 border border-white/10" data-alt="Anime thumbnail for Psycho Pass" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3gtdcy64mnFEg6j1TmojOtUG_XH8ltT5BP1-RUMMWKZTufD_FNLnvaxPyjA9SBLZu3u1sM9DaxYYmHDBvAE2WDh3okb-22vielhSfmdwDjmGM8jpBqRrHfm6MDtotZ5ZX-ETmOMyXJuJtJXFE0KQ2VMa8W5oam_TWEXw_wSsbreCcS9GVo_7QsQU_vQOvYWoQDeHfJWxdYTOqxNXGjHm_VgAsi9UstUzyd_6F8MiJEgjZ34jPohAWQ4f_z3dxftm9L5Y_PN4pOh_h');"></div>
+<div>
+<p class="font-bold leading-snug">Added 'Psycho-Pass' to Watchlist</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Planning to Watch</p>
+</div>
+</div>
+<div class="text-xs text-slate-500 font-medium">Yesterday</div>
+</div>
+<!-- Activity Item 4 -->
+<div class="bg-slate-100 dark:bg-card-dark/50 hover:bg-slate-200 dark:hover:bg-card-dark p-4 rounded-xl border border-slate-200 dark:border-white/5 transition-all flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-14 rounded-lg bg-cover bg-center flex-shrink-0 border border-white/10" data-alt="Review icon for anime" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_LgXlkM9PC68QbEtlKJVNQP3XQRyN6gquSfbNXr1wqME3TTfcjUEVgQnKZSbkIn4c9brUeDI58bn1tCBBhcLwC_Ua0dfe7OjEynwjWx3K0jPRn0kb_OCk3uWLML6NEEeSaqqSQn0Q58lTVJy15CGoWJwH0tgvbVYgu3OIG3xR9vhiGPDjJ1hknJgkuoZInbd-p0nRO7JJpF_RmCVioKHmnlT56vMSfO2O0HJDkAGi3wxv2kWPntg5OsY2TJuh1eTVhSUKEI8QW0M8');"></div>
+<div>
+<p class="font-bold leading-snug">Reviewed 'Ghost in the Shell'</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Score: 10/10 Masterpiece</p>
+</div>
+</div>
+<div class="text-xs text-slate-500 font-medium">2 days ago</div>
+</div>
+</div>
+</div>
+<!-- Account Management Sidebar -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<div class="bg-slate-100 dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-white/5">
+<h3 class="text-lg font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">settings</span>
+                            Account
+                        </h3>
+<div class="space-y-1">
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">person</span>
+<span class="text-sm font-medium">Personal Information</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="text-sm font-medium">Notifications</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors text-slate-400 hover:text-white" href="#">
+<span class="material-symbols-outlined text-[20px]">security</span>
+<span class="text-sm font-medium">Privacy &amp; Security</span>
+</a>
+<div class="pt-4 mt-4 border-t border-white/5">
+<button class="w-full flex items-center justify-between p-4 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-500 transition-all group">
+<span class="font-bold tracking-tight">Logout</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">logout</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-gradient-to-br from-primary/20 to-transparent p-6 rounded-xl border border-primary/20 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-bold text-primary mb-2">AniParadise Plus</h4>
+<p class="text-xs text-slate-300 mb-4">Get custom profile themes and ad-free browsing.</p>
+<button class="bg-primary text-background-dark text-xs font-bold px-4 py-2 rounded-lg w-full">Upgrade Now</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[100px]">auto_awesome</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-white/5 py-10">
+<div class="mx-auto max-w-[1200px] px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-3 opacity-50">
+<svg class="size-5" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+</svg>
+<span class="text-sm">© 2024 AniParadise. For the fans.</span>
+</div>
+<div class="flex items-center gap-8">
+<a class="text-xs font-medium text-slate-500 hover:text-white" href="#">Terms</a>
+<a class="text-xs font-medium text-slate-500 hover:text-white" href="#">Privacy</a>
+<a class="text-xs font-medium text-slate-500 hover:text-white" href="#">Support</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

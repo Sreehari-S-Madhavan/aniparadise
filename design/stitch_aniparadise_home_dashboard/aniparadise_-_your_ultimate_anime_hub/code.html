@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AniParadise - Your Ultimate Anime Hub</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#47ebeb",
+                        "secondary": "#C580E6",
+                        "accent-purple": "#C580E6",
+                        "accent-pink": "#E680BC",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#1c1c22",
+                        "card-dark": "#2B2E33",
+                        "surface-dark": "#2b2e33",
+                        "border-dark": "#293838"
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"],
+                        "sans": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glow-cyan { box-shadow: 0 0 20px rgba(71, 235, 235, 0.3); }
+        .bg-blob { filter: blur(100px); z-index: 0; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hero-gradient { background: linear-gradient(0deg, #1c1c22 0%, rgba(28, 28, 34, 0.8) 40%, rgba(28, 28, 34, 0) 100%); }
+        .glass-card { background: rgba(43, 46, 51, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .genre-gradient-1 { background: linear-gradient(135deg, #47ebeb 0%, #C580E6 100%); }
+        .genre-gradient-2 { background: linear-gradient(135deg, #C580E6 0%, #E680BC 100%); }
+        .genre-gradient-3 { background: linear-gradient(135deg, #E680BC 0%, #47ebeb 100%); }
+        .neo-glow { box-shadow: 0 0 15px rgba(71, 235, 235, 0.1); }
+        .neo-glow-strong { box-shadow: 0 0 20px rgba(71, 235, 235, 0.3); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen">
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/history@5/umd/history.development.js"></script>
+    <script src="https://unpkg.com/react-router@6.3.0/umd/react-router.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.3.0/umd/react-router-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+        const { MemoryRouter, Routes, Route, Link, useNavigate, useLocation } = ReactRouterDOM;
+
+        // --- Common Components ---
+
+        const Navbar = () => {
+            const location = useLocation();
+            const isAuth = location.pathname === '/login';
+            if (isAuth) return null;
+
+            return (
+                <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-4">
+                    <div className="max-w-[1440px] mx-auto flex items-center justify-between">
+                        <div className="flex items-center gap-12">
+                            <Link to="/" className="flex items-center gap-3 group">
+                                <div className="size-10 bg-primary rounded-lg flex items-center justify-center text-background-dark group-hover:scale-105 transition-transform">
+                                    <span className="material-symbols-outlined font-bold">movie_filter</span>
+                                </div>
+                                <h2 className="text-2xl font-800 tracking-tighter uppercase italic">Ani<span className="text-primary">Paradise</span></h2>
+                            </Link>
+                            <nav className="hidden md:flex items-center gap-8">
+                                <Link className={`${location.pathname === '/' ? 'text-primary font-bold' : 'hover:text-primary font-medium'} text-sm uppercase tracking-widest transition-colors`} to="/">Home</Link>
+                                <Link className={`${location.pathname === '/browse' ? 'text-primary font-bold' : 'hover:text-primary font-medium'} text-sm uppercase tracking-widest transition-colors`} to="/browse">Browse</Link>
+                                <Link className={`${location.pathname === '/tracker' ? 'text-primary font-bold' : 'hover:text-primary font-medium'} text-sm uppercase tracking-widest transition-colors`} to="/tracker">Tracker</Link>
+                                <Link className={`${location.pathname === '/discussions' ? 'text-primary font-bold' : 'hover:text-primary font-medium'} text-sm uppercase tracking-widest transition-colors`} to="/discussions">Discussions</Link>
+                                <Link className={`${location.pathname === '/profile' ? 'text-primary font-bold' : 'hover:text-primary font-medium'} text-sm uppercase tracking-widest transition-colors`} to="/profile">Profile</Link>
+                            </nav>
+                        </div>
+                        <div className="flex items-center gap-6">
+                            <div className="relative hidden sm:block">
+                                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                                <input className="bg-slate-200 dark:bg-card-dark border-none rounded-full pl-10 pr-4 py-2 w-48 lg:w-64 focus:ring-2 focus:ring-primary transition-all text-sm" placeholder="Search anime..." type="text"/>
+                            </div>
+                            <div className="flex gap-3">
+                                <button className="p-2 rounded-full hover:bg-white/10 transition-colors relative">
+                                    <span className="material-symbols-outlined">notifications</span>
+                                    <span className="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+                                </button>
+                                <Link to="/profile" className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                                    <span className="material-symbols-outlined">account_circle</span>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+            );
+        };
+
+        const Footer = () => {
+            const location = useLocation();
+            if (location.pathname === '/login') return null;
+            return (
+                <footer className="mt-20 border-t border-white/10 bg-white dark:bg-card-dark/30 py-12 px-6 lg:px-20">
+                    <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                        <div className="flex flex-col items-center md:items-start gap-4">
+                            <div className="flex items-center gap-3">
+                                <div className="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+                                    <span className="material-symbols-outlined font-bold text-sm">movie_filter</span>
+                                </div>
+                                <h2 className="text-xl font-800 tracking-tighter uppercase italic">Ani<span className="text-primary">Paradise</span></h2>
+                            </div>
+                            <p className="text-slate-500 text-sm">© 2024 AniParadise Media Group. All rights reserved.</p>
+                        </div>
+                        <div className="flex gap-8 text-sm font-medium text-slate-400 uppercase tracking-widest">
+                            <a className="hover:text-primary transition-colors" href="#">Privacy</a>
+                            <a className="hover:text-primary transition-colors" href="#">Terms</a>
+                            <a className="hover:text-primary transition-colors" href="#">Support</a>
+                            <a className="hover:text-primary transition-colors" href="#">Discord</a>
+                        </div>
+                    </div>
+                </footer>
+            );
+        };
+
+        // --- Page Components ---
+
+        const LoginPage = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="min-h-screen relative overflow-hidden bg-background-light dark:bg-background-dark">
+                    <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[50%] bg-primary/10 rounded-full bg-blob"></div>
+                    <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[50%] bg-secondary/10 rounded-full bg-blob"></div>
+                    <div className="relative z-10 layout-container flex h-full min-h-screen grow flex-col">
+                        <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-border-dark px-10 py-3 mx-auto w-full max-w-[1200px]">
+                            <div className="flex items-center gap-4 text-white">
+                                <div className="size-6 text-primary">
+                                    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+                                    </svg>
+                                </div>
+                                <h2 className="text-white text-xl font-bold leading-tight tracking-tight">AniParadise</h2>
+                            </div>
+                            <div className="flex items-center gap-6">
+                                <Link className="text-white/70 hover:text-white text-sm font-medium transition-colors" to="/browse">Discover</Link>
+                                <button className="flex min-w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary/10 border border-primary/30 text-primary text-sm font-bold">
+                                    <span>Register</span>
+                                </button>
+                            </div>
+                        </header>
+                        <main className="flex-1 flex items-center justify-center p-6">
+                            <div className="w-full max-w-[1000px] grid grid-cols-1 lg:grid-cols-2 bg-card-dark rounded-xl overflow-hidden shadow-2xl border border-border-dark">
+                                <div className="hidden lg:flex flex-col justify-between p-12 bg-cover bg-center relative" style={{backgroundImage: "linear-gradient(to bottom, rgba(28, 38, 38, 0.4), rgba(28, 38, 38, 0.9)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuAakmuGW0LHhA4fygUcBk4s1wPSVTfqxnoyfw0u3cz0BfR-54EMLYc9c2eUDJIG8Ry1L6i9h1id4MHi_wkYkxZCNUSlnT8k9d0zzp6qx30jQb5UHWzk88_38d-N1oxo0VxbYRFDbRpNLKjlqcB8pcHisElD87MBv7WJbWmyFTiSjqH8SW2fTVnHa5JuLOyazJXg_Ufu9w9N8zyz0rutri_9cSp6my4trThzYOOqBWWxXQqWOMcYux3tGvMYTQPsWEdlJWjonuwW_lMG')"}}>
+                                    <div className="relative z-10">
+                                        <span className="inline-block px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-4">New Season Live</span>
+                                        <h1 className="text-white text-4xl font-bold leading-tight mb-4">Your journey through the stars begins here.</h1>
+                                        <p className="text-white/60 text-lg">Track your favorite series, connect with thousands of fans, and discover your next obsession.</p>
+                                    </div>
+                                    <div className="relative z-10 flex items-center gap-4">
+                                        <div className="flex -space-x-3">
+                                            {[1,2,3].map(i => <div key={i} className="size-10 rounded-full border-2 border-card-dark bg-slate-500" />)}
+                                        </div>
+                                        <p className="text-white/80 text-sm font-medium">+12k Voyagers online</p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col justify-center p-8 lg:p-16">
+                                    <div className="mb-10 text-center lg:text-left">
+                                        <h2 className="text-white text-3xl font-bold mb-2">Welcome Back</h2>
+                                        <p className="text-[#9db8b8] text-base">Enter your credentials to access your terminal.</p>
+                                    </div>
+                                    <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); navigate('/'); }}>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-white text-sm font-medium leading-none">Email Address</label>
+                                            <div className="relative">
+                                                <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#9db8b8] text-[20px]">mail</span>
+                                                <input className="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-border-dark bg-[#111818] h-14 pl-12 pr-4 placeholder:text-[#5c7373] text-base font-normal" placeholder="voyager@aniparadise.com" type="email"/>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <div className="flex justify-between items-center">
+                                                <label className="text-white text-sm font-medium leading-none">Password</label>
+                                                <a className="text-primary/70 hover:text-primary text-xs font-medium" href="#">Forgot?</a>
+                                            </div>
+                                            <div className="relative">
+                                                <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#9db8b8] text-[20px]">lock</span>
+                                                <input className="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-border-dark bg-[#111818] h-14 pl-12 pr-12 placeholder:text-[#5c7373] text-base font-normal" placeholder="••••••••" type="password"/>
+                                                <button className="absolute right-4 top-1/2 -translate-y-1/2 text-[#9db8b8] hover:text-white" type="button">
+                                                    <span className="material-symbols-outlined text-[20px]">visibility</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <button className="w-full h-14 bg-primary text-background-dark font-bold rounded-lg glow-cyan hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-4" type="submit">
+                                            <span>Login to Terminal</span>
+                                            <span className="material-symbols-outlined text-[20px]">login</span>
+                                        </button>
+                                    </form>
+                                    <p className="text-center mt-10 text-[#9db8b8] text-sm">
+                                        Don't have an account? 
+                                        <a className="text-primary font-bold hover:underline ml-1" href="#">Join the community</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </main>
+                        <footer className="px-10 py-6 text-center">
+                            <p className="text-[#5c7373] text-xs">© 2024 AniParadise Media Group. All rights reserved.</p>
+                        </footer>
+                    </div>
+                </div>
+            );
+        };
+
+        const HomePage = () => {
+            const navigate = useNavigate();
+            return (
+                <main className="max-w-[1440px] mx-auto px-6 lg:px-20 py-8 space-y-12">
+                    <section className="relative rounded-3xl overflow-hidden min-h-[500px] flex items-end p-8 lg:p-16">
+                        <div className="absolute inset-0 z-0">
+                            <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent z-10"></div>
+                            <div className="w-full h-full bg-cover bg-center" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkaIhqzzWvAyN6SO3dahMi7DlzjVQrW11VS4SqqtwQ3SbirN1gCvW549ODshQmg_AqhORM_fWGt36X3dABWAg7zCsQNLIMkJ-HLcztNGxWM7aAur44zX2dGpZaJyH6qagqW2_Dzz1nI5i79hgTYdJRZBMhooLzNyz7YkqvyG0aeLMNVDTf6pgKNcnA2CK_F4xFbKWnUV34E6RUKLrL-MdC9k5kiYTMbfQGRGsf-mFANKwtp7pgjHtcwxVntdqGKKjttM0X8RsLXisC')"}}></div>
+                        </div>
+                        <div className="relative z-20 max-w-2xl space-y-6">
+                            <span className="bg-primary/20 text-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-primary/30">New Season Live</span>
+                            <h1 className="text-5xl lg:text-7xl font-black leading-none tracking-tight">Discover Your <br/><span className="text-primary italic">Next Favorite</span> Anime</h1>
+                            <p className="text-lg text-slate-300 max-w-md">Track your progress, explore seasonal hits, and join a global community of fans. Your journey starts here.</p>
+                            <div className="flex gap-4">
+                                <button onClick={() => navigate('/tracker')} className="bg-primary text-background-dark font-bold px-8 py-4 rounded-xl flex items-center gap-2 glow-cyan hover:scale-105 transition-all">
+                                    <span className="material-symbols-outlined">play_arrow</span> Start Tracking
+                                </button>
+                                <button onClick={() => navigate('/browse')} className="bg-white/10 backdrop-blur-md border border-white/10 hover:bg-white/20 transition-all font-bold px-8 py-4 rounded-xl">Explore Browse</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section className="space-y-6">
+                        <div className="flex items-center justify-between px-2">
+                            <h2 className="text-3xl font-bold tracking-tight flex items-center gap-3"><span className="material-symbols-outlined text-primary">trending_up</span> Trending Now</h2>
+                            <Link className="text-primary text-sm font-bold uppercase tracking-wider flex items-center gap-1 hover:underline" to="/browse">View All <span className="material-symbols-outlined text-sm">chevron_right</span></Link>
+                        </div>
+                        <div className="flex overflow-x-auto gap-6 no-scrollbar pb-4 -mx-2 px-2">
+                            {[
+                                { title: "Neo Genesis: Reborn", tags: "Cyberpunk, Mecha", score: "4.9", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDBiqe64GJr0oXHKkb48rQZCzJj4M2VUU23xfFJWk39e8Paf3aHMLtNX5rtDUWJwUzaClmvrjZEj3BQ9b4fNVoyYMS9ubhVkaFaJ4mN8yNMLp5TsoXofwI-yVGwtWjDS3KbsX6Cme-JASXSJor-lk9sfJ3oX5maKvRq8V829oYe9fK0WNOKJr4PFeB1wSKwbwcDQMwJHL4fJdnfXADQS_lCa_E8myq5OWCLW1VKLKnGyVqF8gqedHqsP4vKa0PzUP4UFdrOZAuCjA2v" },
+                                { title: "Twilight Chronicles", tags: "Fantasy, Mystery", score: "4.7", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCFsWO0IovmaFYBYBjw4hNqEgjiQ2WujSyZIWSgEuGgorcyWqkvUViFA8jX-4CG25q-XVCadY6HtuxihNflCBBf0xxGNbJY9fYaOFfRkL7yGCwP5_2pWSoQ06mGZHBbxnWqQNtAHZ_5W3RQvmk3ZpoKdzgB1L892WRx0DBzYJs40VYjUoFmirQgaAECuM6W1ZYM-qxID_AsEGIF_8arr7pq_umPeoyr1duCbDvUCiqBJF2sr5jqbpD6slrICaF5596PKiTbPPLcOARN" },
+                                { title: "Vibe Check: Resonance", tags: "Music, Drama", score: "4.8", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuByzAiRSbU6Kc748H8zIiR15N7TeQmNBd2DsxHqK9WLZgM6mI5JuVMwNmyaCnzEA6mcUsTliIsxTTmz9Mks6z2U_y1jmG2M5upYLZtkSrYeK2tmE2xecRAkdRX8_S1ODmyPZh1N5Ja0r8BPjNSE4fATX15k-Nu_jry85-A4jLyqpyTQ5KXdeJrrFvW7_o-K4FuhOLLjHZ_TshX9NZ7ZYbmaTR2VW1bnxw175uXPTABVsK23RUZBaEPZW2dYVk4eELuyeoL8qwU7rfWV" },
+                                { title: "Cyberpunk: Edgerunners", tags: "Action, Sci-Fi", score: "9.0", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBJEfZTKBX7ajCaTvFe3Wauj7ru3DlH7irbAs9Lsfs1yqRc0qMQEA3l3kJXHEkrkZ4jpAU-icYI4suhznGM5nfid9tCJgW2JFnhGPF77zr_VuJMh6rGosbYT9ldxz8uFtNLFgQA31mw3dXL6uzXowkLiFRy2vS-BwtZWSYOMx1w3sKe6wrXxWrxkQUPVOxOoW0uSwuDm1qaAyo3Kqq9oGeQw7P6GgBYe9hn0se_QlZ8hTkRFkN0Eh68AFvHQsZ2AQOCvqJFOf3OkA3j" }
+                            ].map((item, idx) => (
+                                <div key={idx} onClick={() => navigate('/anime/1')} className="flex-none w-72 space-y-4 group cursor-pointer">
+                                    <div className="aspect-[3/4] rounded-2xl overflow-hidden relative shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-end p-6">
+                                            <button className="bg-primary text-black w-full py-3 rounded-lg font-bold">Add to List</button>
+                                        </div>
+                                        <div className="w-full h-full bg-cover bg-center" style={{backgroundImage: `url('${item.img}')`}}></div>
+                                        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary flex items-center gap-1 z-20">
+                                            <span className="material-symbols-outlined text-xs fill-1">star</span> {item.score}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{item.title}</h3>
+                                        <p className="text-sm text-slate-400 font-medium italic">{item.tags}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                </main>
+            );
+        };
+
+        const BrowsePage = () => {
+            const navigate = useNavigate();
+            return (
+                <main className="max-w-[1400px] mx-auto px-6 py-8">
+                    <section className="mb-10">
+                        <div className="flex items-center justify-between mb-4">
+                            <h2 className="text-lg font-semibold flex items-center gap-2"><span className="material-symbols-outlined text-primary">filter_list</span> Popular Genres</h2>
+                            <button className="text-sm text-primary font-medium hover:underline">View All</button>
+                        </div>
+                        <div className="flex gap-3 overflow-x-auto pb-4 no-scrollbar">
+                            <button className="px-6 h-10 rounded-xl bg-primary text-background-dark font-bold text-sm whitespace-nowrap shadow-lg">All Genres</button>
+                            {['Action', 'Romance', 'Sci-Fi', 'Adventure', 'Fantasy', 'Comedy', 'Drama', 'Horror', 'Cyberpunk'].map(g => (
+                                <button key={g} className="px-6 h-10 rounded-xl bg-slate-200/50 dark:bg-white/5 hover:bg-white/10 text-sm whitespace-nowrap border border-white/5 transition-colors">{g}</button>
+                            ))}
+                        </div>
+                    </section>
+                    <section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6">
+                        {[
+                            { title: "Cybernetic Hearts", score: "8.9", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCOOLcDUYc7O_QUXy7j6NxrEXJqbXXzRvL1DJoVviHK5l1jdmnom-ZkdF7kI1vFQBPjeRe_50aT3Y3DcpNsxT2oCU29O28G4afi3BnvMa0EjVf1riA9X7-2Mi06fSfYgBl1FlCV8g4BoMYRaIy7qTbT2ww4nx2sAC5hauBsKeTam1JOeOveksFWEazHg5k-4QTE5Xjzw7McchbuAQb5CbOKGjq6V8bc3FVHjmeng1YNebg4c1bGR9CJLS946qi2dWb429egZJCJK-K3" },
+                            { title: "Neon Vanguard", score: "9.2", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBSNOkcaFlDln3aZYY0C3iZnLzweEgU7rc23mR8PPHob5cGBv9kpfnHvXDP6ArPL8XqClmrstvSBuQ2ah7fSLFX2QzitagMC3EsM3O50Ij6Vk_twrkQJz8dYH7-T96Dbd7NpoxtW9MQ6uV6smYXu2OWVGPqxVS3ATdnpXfghABk2r_3gp9TVe7WWVHOEhck5TbVuFM2wqiMPVpHcuSLZfp2-W8pBhEdE2Q0_jpJAcRx9FP6rBikpyF_Nzx_E7pzsooR-6Qj8mVXMyNy" },
+                            { title: "Starlight Echoes", score: "8.5", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAZo5TplcMg_STZYoxTavethTWW6ZesAHaapA3JoKw8I_C5FHiuUs_tP_Vnpi0bx9fmPJ1n5nc3xphcs-nz7YxxHqg2u4TtXa2G_mgZhDFqyERsGwHRDYPtFKaVOD0y4SkNJb47fEdjamxvVyiK48JcDv1r5VdCqpfxib4bKOlUt1K8WOJyHq98cSniPNspF08tCl9zecke0AMT2x90m7gd8IjcGihc_0dPTtXhservcBZu427GBeYrjatxkdWfP1KTAZG1obEiMwg9" },
+                            { title: "Whisper of the Blade", score: "9.5", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBTX1M59KTB0SdBKs6RhbN6KB88xiw-MdKOyYpcPtx2cXM9Vfmxer7v__YPBD5ewN6jxAlQnpK3zmB_nn5l9d_HHU-8tWaQLipvCP8EMJviUFgXClaH6dGLYq8x9wKwOgHcZnBbbLr52gDWPPdMymacR7XA0jWUC8nmOtOrQdDiy3pG88TNgOtV7xNgCWFpw49_wDdRt_L3J8mHgJzfRNQzfroRFQgwtm2eA_R9vsbp0p1q3mFTcvg-w4u6U84MICLsHQBmMsFmdP3-" },
+                            { title: "Void Walkers", score: "7.8", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBwTQFxZ_py4RHRG_URtIKZE0WRSwg2hmxRAKgjhmBiXAWSvMvsKVztKkbUydbdiaYDIhzIi1ILq6VRctqhVyR4d956f2QJ6g9yk_lHZrUZHK6bZfSmqFrFODvGMh5TEG9rTjWyHKkiSVFcjT1jnwE6Ep_AF9zp4QVol92G-JnatHblqcS5jRDg4wlDTsQe2kM_SNTWL1_dwgIppwjkEk8B6kcMk5y7yf7WpFmGdg9H4-CS7aF3Q-dZ3oXrHqgkOPh5VCWqLy7JHTa2" },
+                            { title: "Spirit Bound", score: "8.1", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBfbVeuNX7KwQU8VC8xyllxzC0BIyKUR7w50Khyr33ACcRv4H7ttJG4_lXEMfxsMvcxdHh5VcgdhK_w1YJS8nqV18eiAJD_AnHgDVQUctvhHV2epRtnZI-nC9zhPOImjr4E1RG1nhHetGs1gLM9qKPBqOiS7vqHbGtbOokCaWqPJxDxhhe2MNUwMf1VZKosssfJ88NfOG0pEhLngVHsByqKBNZ2MwAxabBC-K7m4ZSRpkHJv1_Kv7F_Fs5Ipn7XDIO7tR79vXSVkZmN" }
+                        ].map((anime, idx) => (
+                            <div key={idx} onClick={() => navigate('/anime/1')} className="group relative flex flex-col gap-3 cursor-pointer">
+                                <div className="relative aspect-[3/4.5] overflow-hidden rounded-xl bg-surface-dark glow-hover">
+                                    <img className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src={anime.img}/>
+                                    <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1 border border-white/10 shadow-lg">
+                                        <span className="material-symbols-outlined text-primary text-[16px] fill-current">star</span>
+                                        <span className="text-xs font-bold text-white">{anime.score}</span>
+                                    </div>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                        <button className="w-full py-2 bg-primary text-background-dark font-bold text-xs rounded-lg flex items-center justify-center gap-2">
+                                            <span className="material-symbols-outlined text-[18px]">play_arrow</span> Watch Now
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="px-1">
+                                    <h3 className="font-bold text-base line-clamp-1 group-hover:text-primary transition-colors">{anime.title}</h3>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Studio Nexus • 2024</p>
+                                </div>
+                            </div>
+                        ))}
+                    </section>
+                </main>
+            );
+        };
+
+        const AnimeDetailPage = () => {
+            return (
+                <main className="relative min-h-screen">
+                    <div className="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
+                        <div className="absolute inset-0 bg-cover bg-center scale-105" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBtuotY1qFteVxyOeOSxVxL0gk3t0pAQX6Dv7UwPgJjigAg8ZzOJC7ANEnHzyZ9l6XkYdpZjdd5WU43ME856m3dxHy-70_M9nxBjQj5Zn5M07RpVAm-6bLeuId-GGZuMW0RcxZ_M1QtsNN8gc-L71T1EVfbitFaPrWbRxkMoFt8IjCfFOeHxAst1YxWLWUzcKkjDMfr11Ua7tBDgXOdO-IMFeLs1ROppn39NSeNsTibufPrAXh2CH_ejcmWb6ED7haA-wx0jdpzknI7')"}}></div>
+                        <div className="absolute inset-0 hero-gradient"></div>
+                        <div className="absolute bottom-0 left-0 w-full px-6 lg:px-20 pb-12">
+                            <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-end gap-8">
+                                <div className="hidden md:block w-48 aspect-[3/4] rounded-xl shadow-2xl overflow-hidden border-4 border-background-dark flex-shrink-0">
+                                    <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJEfZTKBX7ajCaTvFe3Wauj7ru3DlH7irbAs9Lsfs1yqRc0qMQEA3l3kJXHEkrkZ4jpAU-icYI4suhznGM5nfid9tCJgW2JFnhGPF77zr_VuJMh6rGosbYT9ldxz8uFtNLFgQA31mw3dXL6uzXowkLiFRy2vS-BwtZWSYOMx1w3sKe6wrXxWrxkQUPVOxOoW0uSwuDm1qaAyo3Kqq9oGeQw7P6GgBYe9hn0se_QlZ8hTkRFkN0Eh68AFvHQsZ2AQOCvqJFOf3OkA3j"/>
+                                </div>
+                                <div className="flex-1">
+                                    <div className="flex flex-wrap gap-2 mb-4">
+                                        <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Action</span>
+                                        <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Sci-Fi</span>
+                                        <span className="px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-bold uppercase tracking-wider border border-white/10">Studio Trigger</span>
+                                    </div>
+                                    <h1 className="text-4xl md:text-6xl font-bold mb-2 tracking-tighter">Cyberpunk: Edgerunners</h1>
+                                    <p className="text-slate-400 text-lg max-w-2xl font-medium">In a dystopia riddled with corruption and cybernetic implants, a talented but reckless street kid strives to become a mercenary outlaw.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="max-w-[1440px] mx-auto px-6 lg:px-20 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        <div className="lg:col-span-8 space-y-12">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div className="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+                                    <span className="text-primary font-bold text-3xl">8.61</span>
+                                    <span className="text-xs uppercase text-slate-500 font-bold mt-1">Global Rating</span>
+                                </div>
+                                <div className="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+                                    <span className="text-white font-bold text-3xl">#54</span>
+                                    <span className="text-xs uppercase text-slate-500 font-bold mt-1">Ranking</span>
+                                </div>
+                                <div className="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+                                    <span className="text-white font-bold text-3xl">#128</span>
+                                    <span className="text-xs uppercase text-slate-500 font-bold mt-1">Popularity</span>
+                                </div>
+                                <div className="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+                                    <span className="text-white font-bold text-3xl">10</span>
+                                    <span className="text-xs uppercase text-slate-500 font-bold mt-1">Episodes</span>
+                                </div>
+                            </div>
+                            <section>
+                                <h3 className="text-2xl font-bold mb-6 flex items-center gap-2"><span className="material-symbols-outlined text-primary">description</span> Synopsis</h3>
+                                <div className="bg-card-dark/20 p-8 rounded-3xl border border-white/5 text-slate-300 leading-relaxed text-lg">
+                                    <p className="mb-4">Night City is a sprawling metropolis obsessed with power, glamour, and body modification. After losing everything in a drive-by shooting, David Martinez, a brilliant student at the prestigious Arasaka Academy, decides to survive on the wrong side of the law as an "edgerunner"—a high-tech, black-market mercenary.</p>
+                                </div>
+                            </section>
+                        </div>
+                        <div className="lg:col-span-4 space-y-8">
+                            <div className="bg-card-dark p-8 rounded-3xl shadow-xl sticky top-24 border border-white/5">
+                                <button className="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(71,235,235,0.3)]">
+                                    <span className="material-symbols-outlined">add_circle</span> Add to Tracker
+                                </button>
+                                <div className="mt-8 space-y-6">
+                                    <div className="flex items-center justify-between pb-4 border-b border-white/5"><span className="text-slate-500 text-sm">Status</span><span className="text-white font-medium">Finished Airing</span></div>
+                                    <div className="flex items-center justify-between pb-4 border-b border-white/5"><span className="text-slate-500 text-sm">Aired</span><span className="text-white font-medium">Sept 13, 2022</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            );
+        };
+
+        const TrackerPage = () => {
+            return (
+                <main className="px-6 md:px-20 lg:px-40 flex flex-1 justify-center py-8">
+                    <div className="layout-content-container flex flex-col max-w-[1200px] flex-1 gap-6">
+                        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6">
+                            <div className="flex flex-col gap-2">
+                                <h1 className="text-slate-900 dark:text-white text-5xl font-black leading-tight tracking-tight">My Tracker</h1>
+                                <p className="text-slate-500 dark:text-slate-400 text-lg">Syncing with Neo-Tokyo servers... <span className="text-primary font-mono">ONLINE</span></p>
+                            </div>
+                            <div className="flex flex-wrap gap-4 w-full lg:w-auto">
+                                <div className="flex flex-1 lg:min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-white dark:bg-card-dark border border-slate-200 dark:border-slate-800">
+                                    <p className="text-slate-500 dark:text-slate-400 text-xs font-bold uppercase tracking-wider">Episodes</p>
+                                    <p className="text-slate-900 dark:text-white text-2xl font-black">1,248</p>
+                                </div>
+                                <div className="flex flex-1 lg:min-w-[140px] flex-col gap-1 rounded-xl p-4 bg-primary/10 border border-primary/30">
+                                    <p className="text-primary text-xs font-bold uppercase tracking-wider">Mean Score</p>
+                                    <p className="text-primary text-2xl font-black">8.9</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex flex-col gap-4">
+                            {[
+                                { title: "Chainsaw Man", ep: "08 / 12", score: "9.2", type: "TV", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCtxk5nXaJfp6uITqH-vYV-gRiSxS6FxiF1REy7pvxFdJbVBm0ziYR3a5JEypQj8MS5Sq-WvAQ5feVhTjd67HikZ8hgCF_Op-FM7jKx9VsVAntt63eExwnbNJHgbAkRjZnm-tSjMBagKd81fDzC6rQCw_VBAA1rjMrcAJn1tjpWMM6fVXCK0Fb-Bk5Je8uOoWzMbAjtmqFSFAKIWm-vzNhm9ts6oOsb0d_0Q-VRVHGVn8_yNH6Z8BEMA0grsZIK5vlyyGAt40B5RgNA" },
+                                { title: "Cyberpunk: Edgerunners", ep: "10 / 10", score: "9.0", type: "ONA", img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBu7zrFqPrJIxgURqxp9o4Drv9nswnFEjCSedUBnGMAuiz-zI0g88K_hW94tHSnEGvxq3T8WupszKDapcRQdh9-GgBaoZkKG5odkiLFNGe9Iall-bkt80C6y5HLkMTKrAWCWcg4jaNgFp8_yglKeB3s-AqyEMdof_1GPq53eD8uuu1sTOaBRULQNAveL4GxweO6wdyUVNzEmgayUf4G5KNPssxj6-8yUwYodZ-LZSlOt2wsQuyPoRVrVXRH04w1wixgYuJlQy6pt5fN" }
+                            ].map((anime, idx) => (
+                                <div key={idx} className="group flex flex-col md:flex-row items-center gap-6 p-4 bg-white dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all">
+                                    <div className="relative w-full md:w-32 h-44 md:h-32 shrink-0 rounded-lg overflow-hidden border-2 border-slate-200 dark:border-slate-700">
+                                        <div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage: `url('${anime.img}')`}}></div>
+                                        <div className="absolute bottom-1 right-1 bg-background-dark/80 backdrop-blur-sm text-primary text-[10px] font-bold px-1.5 rounded uppercase">{anime.type}</div>
+                                    </div>
+                                    <div className="flex flex-col flex-1 gap-2 w-full">
+                                        <div className="flex justify-between items-start">
+                                            <h3 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">{anime.title}</h3>
+                                            <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-lg">
+                                                <span className="material-symbols-outlined text-primary text-sm">star</span>
+                                                <span className="text-xs font-bold">{anime.score}</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col gap-1 mt-2">
+                                            <div className="flex justify-between text-xs font-bold mb-1">
+                                                <span className="text-slate-600 dark:text-slate-300">Progress: <span className="text-primary">{anime.ep}</span></span>
+                                            </div>
+                                            <div className="w-full bg-slate-100 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
+                                                <div className="bg-primary h-full rounded-full neo-glow" style={{width: anime.title.includes('Chainsaw') ? '66%' : '100%'}}></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex flex-row md:flex-col gap-2 w-full md:w-auto">
+                                        <button className="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg bg-primary text-background-dark font-bold text-sm">Update</button>
+                                        <button className="flex-1 md:w-28 flex items-center justify-center gap-2 h-10 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-bold text-sm">Edit</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </main>
+            );
+        };
+
+        const DiscussionsPage = () => {
+            return (
+                <main className="flex-1 max-w-7xl mx-auto w-full px-4 py-8 flex gap-8">
+                    <aside className="hidden xl:flex flex-col w-64 gap-6 shrink-0">
+                        <div className="flex flex-col gap-1">
+                            <a className="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-bold" href="#"><span className="material-symbols-outlined">forum</span> Discussions</a>
+                            <a className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-all" href="#"><span className="material-symbols-outlined">auto_graph</span> Top Charts</a>
+                        </div>
+                    </aside>
+                    <section className="flex-1 flex flex-col gap-6">
+                        <article className="group bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 p-6 neo-glow-hover transition-all">
+                            <div className="flex items-center justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="size-10 rounded-xl bg-slate-800" />
+                                    <div>
+                                        <p className="font-bold text-sm">@GojoSatoru_Fan</p>
+                                        <p className="text-[11px] text-slate-500 font-medium">2h ago • <span className="text-primary/80">#JujutsuKaisen</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 className="text-xl font-bold mb-3 leading-tight group-hover:text-primary transition-colors">Is the latest arc of Jujutsu Kaisen the best yet?</h2>
+                            <p className="text-slate-600 dark:text-slate-400 text-[15px] leading-relaxed mb-6">The Shibuya Incident was legendary, but the current Culling Game arc is pushing boundaries in ways we've never seen before...</p>
+                            <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+                                <div className="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
+                                    <button className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-primary/20 hover:text-primary">Agree <span className="font-black">+452</span></button>
+                                </div>
+                                <button className="p-2 text-slate-400 hover:text-primary flex items-center gap-2"><span className="material-symbols-outlined text-xl">chat_bubble</span> 128</button>
+                            </div>
+                        </article>
+                    </section>
+                </main>
+            );
+        };
+
+        const ProfilePage = () => {
+            const navigate = useNavigate();
+            return (
+                <main className="mx-auto max-w-[1200px] w-full px-6 py-10 flex flex-col gap-10">
+                    <section className="relative overflow-hidden rounded-xl bg-slate-100 dark:bg-card-dark p-8 border border-slate-200 dark:border-white/5">
+                        <div className="relative flex flex-col md:flex-row items-center md:items-end justify-between gap-6">
+                            <div className="flex flex-col md:flex-row items-center gap-8">
+                                <div className="relative">
+                                    <div className="size-36 rounded-full border-4 border-primary/20 p-1">
+                                        <div className="size-full rounded-full bg-cover bg-center border-2 border-primary" style={{backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBr4CfdMIG54xH8H0PCUVFUegcpH-ya0ZeO0nFr1wZ7dSZ2Vn1827MO25mR21H5KHPY2wBMfZ2qaHT7ZUcQCpM5P237CQ_mipVmx1aqQTBz-ipJ8F7V79W4FqTNjF0lhm4X-oyGhp00cDJJhya9LsTLIn18BuuB10ztLvamHC8MHHsXkAogpQjmc_ppD0v6DMXq5drLBomuGb4k0jIBuO9KMOSco0xV1HBV9V-c0b7n6f4PP-k0Umvtn8R7mbTnmdgiC8Zea2nlLuAP')"}}></div>
+                                    </div>
+                                    <div className="absolute bottom-2 right-2 size-6 bg-green-500 border-4 border-card-dark rounded-full"></div>
+                                </div>
+                                <div className="text-center md:text-left">
+                                    <h1 className="text-4xl font-bold tracking-tight mb-2">Satoshi_Kun</h1>
+                                    <p className="mt-4 max-w-md text-slate-600 dark:text-slate-300 leading-relaxed">Curating the ultimate collection of cyberpunk and psychological thrillers. Always searching for the next masterpiece.</p>
+                                </div>
+                            </div>
+                            <button className="flex items-center gap-2 bg-slate-200 dark:bg-white/5 hover:bg-white/10 border border-slate-300 dark:border-white/10 px-6 py-3 rounded-xl transition-all font-semibold group">
+                                <span className="material-symbols-outlined text-[20px]">edit</span> Edit Profile
+                            </button>
+                        </div>
+                    </section>
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                        <div className="lg:col-span-8 flex flex-col gap-6">
+                            <h2 className="text-2xl font-bold tracking-tight flex items-center gap-3"><span className="material-symbols-outlined text-primary">bolt</span> Recent Activity</h2>
+                            <div className="space-y-3">
+                                <div className="bg-slate-100 dark:bg-card-dark/50 p-4 rounded-xl border border-slate-200 dark:border-white/5 flex items-center justify-between">
+                                    <div className="flex items-center gap-4">
+                                        <div className="size-14 rounded-lg bg-slate-800" />
+                                        <div>
+                                            <p className="font-bold leading-snug">Finished 'Chainsaw Man' Episode 12</p>
+                                            <p className="text-sm text-slate-500">Marked as Completed</p>
+                                        </div>
+                                    </div>
+                                    <div className="text-xs text-slate-500">2 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        <aside className="lg:col-span-4 space-y-6">
+                            <div className="bg-slate-100 dark:bg-card-dark p-6 rounded-xl border border-slate-200 dark:border-white/5">
+                                <h3 className="text-lg font-bold mb-6 flex items-center gap-2"><span className="material-symbols-outlined text-primary">settings</span> Account</h3>
+                                <div className="space-y-1">
+                                    <button onClick={() => navigate('/login')} className="w-full flex items-center justify-between p-4 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-500 transition-all">
+                                        <span className="font-bold tracking-tight">Logout</span>
+                                        <span className="material-symbols-outlined">logout</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </main>
+            );
+        };
+
+        const App = () => {
+            return (
+                <MemoryRouter initialEntries={['/login']}>
+                    <Navbar />
+                    <Routes>
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/browse" element={<BrowsePage />} />
+                        <Route path="/tracker" element={<TrackerPage />} />
+                        <Route path="/discussions" element={<DiscussionsPage />} />
+                        <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/anime/:id" element={<AnimeDetailPage />} />
+                    </Routes>
+                    <Footer />
+                </MemoryRouter>
+            );
+        };
+
+        const container = document.getElementById('root');
+        const root = createRoot(container);
+        root.render(<App />);
+    </script>
+</body>
+</html>

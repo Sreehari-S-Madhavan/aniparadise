@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniParadise - Cyberpunk: Edgerunners</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#47ebeb",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#1c1c22",
+                        "card-dark": "#2B2E33",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(0deg, #1c1c22 0%, rgba(28, 28, 34, 0.8) 40%, rgba(28, 28, 34, 0) 100%);
+        }
+        .glass-card {
+            background: rgba(43, 46, 51, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white transition-colors duration-300">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 lg:px-20 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-10">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined font-bold">bolt</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight">AniParadise</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Discover</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Manga</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Community</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">My List</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 flex-1 justify-end max-w-md">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-slate-200 dark:bg-card-dark border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/50 transition-all" placeholder="Search anime, manga, studios..." type="text"/>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-xl transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/20 bg-cover bg-center" data-alt="User profile avatar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCQSFDworwxcsm4iqhHu66QWiauVa0zsf3S4GHSTGQzetsYz7X8pYDKFy_8Ge6-v7UlL07BOn6K6gT6SWkM95p3vgA4SJZq8k6yKhanIO6UlNEWxmLD-HSX0RTd3YcgDVjJz6xb6ogKA8ztrSt28yZ-lr7LAFmOD8EVtChFt55WTp0eoaG0tK6xHhonYNYCTnmh9mmbXWtXYd0U-3oRhG4bHEkaRMX8izw-9Cpvn0W_CynZyyzwYm6LZhhkGx8jiXSz-1YZj7pLUuXp')"></div>
+</div>
+</div>
+</header>
+<main class="relative min-h-screen">
+<!-- Hero Section -->
+<div class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center scale-105" data-alt="High quality cinematic anime key art from Cyberpunk Edgerunners" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBtuotY1qFteVxyOeOSxVxL0gk3t0pAQX6Dv7UwPgJjigAg8ZzOJC7ANEnHzyZ9l6XkYdpZjdd5WU43ME856m3dxHy-70_M9nxBjQj5Zn5M07RpVAm-6bLeuId-GGZuMW0RcxZ_M1QtsNN8gc-L71T1EVfbitFaPrWbRxkMoFt8IjCfFOeHxAst1YxWLWUzcKkjDMfr11Ua7tBDgXOdO-IMFeLs1ROppn39NSeNsTibufPrAXh2CH_ejcmWb6ED7haA-wx0jdpzknI7')"></div>
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="absolute bottom-0 left-0 w-full px-6 lg:px-20 pb-12">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-end gap-8">
+<div class="hidden md:block w-48 aspect-[3/4] rounded-xl shadow-2xl overflow-hidden border-4 border-background-dark flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Cyberpunk Edgerunners official poster" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJEfZTKBX7ajCaTvFe3Wauj7ru3DlH7irbAs9Lsfs1yqRc0qMQEA3l3kJXHEkrkZ4jpAU-icYI4suhznGM5nfid9tCJgW2JFnhGPF77zr_VuJMh6rGosbYT9ldxz8uFtNLFgQA31mw3dXL6uzXowkLiFRy2vS-BwtZWSYOMx1w3sKe6wrXxWrxkQUPVOxOoW0uSwuDm1qaAyo3Kqq9oGeQw7P6GgBYe9hn0se_QlZ8hTkRFkN0Eh68AFvHQsZ2AQOCvqJFOf3OkA3j"/>
+</div>
+<div class="flex-1">
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Action</span>
+<span class="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider border border-primary/30">Sci-Fi</span>
+<span class="px-3 py-1 rounded-full bg-white/10 text-white/80 text-xs font-bold uppercase tracking-wider border border-white/10">Studio Trigger</span>
+</div>
+<h1 class="text-4xl md:text-6xl font-bold mb-2 tracking-tighter">Cyberpunk: Edgerunners</h1>
+<p class="text-slate-400 text-lg max-w-2xl font-medium">In a dystopia riddled with corruption and cybernetic implants, a talented but reckless street kid strives to become a mercenary outlaw.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Grid -->
+<div class="max-w-[1440px] mx-auto px-6 lg:px-20 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Main Content (Left) -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Stats Row -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+<span class="text-primary font-bold text-3xl">8.61</span>
+<span class="text-xs uppercase text-slate-500 font-bold mt-1">Global Rating</span>
+</div>
+<div class="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+<span class="text-white font-bold text-3xl">#54</span>
+<span class="text-xs uppercase text-slate-500 font-bold mt-1">Ranking</span>
+</div>
+<div class="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+<span class="text-white font-bold text-3xl">#128</span>
+<span class="text-xs uppercase text-slate-500 font-bold mt-1">Popularity</span>
+</div>
+<div class="bg-card-dark/40 border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center">
+<span class="text-white font-bold text-3xl">10</span>
+<span class="text-xs uppercase text-slate-500 font-bold mt-1">Episodes</span>
+</div>
+</div>
+<!-- Synopsis -->
+<section>
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">description</span>
+                        Synopsis
+                    </h3>
+<div class="bg-card-dark/20 p-8 rounded-3xl border border-white/5 text-slate-300 leading-relaxed text-lg">
+<p class="mb-4">Night City is a sprawling metropolis obsessed with power, glamour, and body modification. After losing everything in a drive-by shooting, David Martinez, a brilliant student at the prestigious Arasaka Academy, decides to survive on the wrong side of the law as an "edgerunner"—a high-tech, black-market mercenary.</p>
+<p>Driven by the memory of his mother and the raw desire to reach the top of Arasaka Tower, David finds himself caught in a web of corporate conspiracies, street wars, and the ever-looming threat of cyberpsychosis. Together with a ragtag crew of outlaws, including the elusive netrunner Lucy, he must navigate a world where humanity is a commodity and survival is the only rule.</p>
+</div>
+</section>
+<!-- Where to Watch -->
+<section>
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">play_circle</span>
+                        Where to Watch
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<a class="group flex items-center justify-between p-6 bg-slate-900/50 hover:bg-slate-800/80 border border-white/5 rounded-2xl transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="size-10 bg-[#FF6600] rounded-lg flex items-center justify-center font-black text-white italic">CR</div>
+<span class="font-bold">Crunchyroll</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">open_in_new</span>
+</a>
+<a class="group flex items-center justify-between p-6 bg-slate-900/50 hover:bg-slate-800/80 border border-white/5 rounded-2xl transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="size-10 bg-[#E50914] rounded-lg flex items-center justify-center font-black text-white italic">N</div>
+<span class="font-bold">Netflix</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">open_in_new</span>
+</a>
+<a class="group flex items-center justify-between p-6 bg-slate-900/50 hover:bg-slate-800/80 border border-white/5 rounded-2xl transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="size-10 bg-[#1CE783] rounded-lg flex items-center justify-center font-black text-slate-900 italic">H</div>
+<span class="font-bold">Hulu</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-primary transition-colors">open_in_new</span>
+</a>
+</div>
+</section>
+<!-- Discussion Preview -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-2xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">forum</span>
+                            Community Buzz
+                        </h3>
+<a class="text-primary text-sm font-bold hover:underline" href="#">View All 1.2k Comments</a>
+</div>
+<div class="space-y-4">
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex gap-4">
+<div class="size-12 rounded-full bg-cover bg-center border-2 border-primary/40" data-alt="User avatar for Sarah Jenkins" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAK1gE4fT57Wbp51pNTJRJzhNUqdxTmw5DQZJawjBdkgn9fmU49kXFX8Dt-QnUyAp9t1U0sNN0cmiLuiRTZ0KMwui0GLTNB9cjeHyTYiuR_gJicI0riSuVPGA9rLXcZeF9nNTpW1cJ8fxe_aKUo6OMBIVKodqNBF-nUj-KkKQw03l4j57I3DIjKhN41N42r5RLO-40AaVSoY63eSfoHplgOSwBgt_1ial14VEh_dza8SAjGTBWulpHJayWn75dBAmvFom405Q6ER3kz')"></div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-bold">S. Jenkins</h4>
+<span class="text-xs text-slate-500">2 hours ago</span>
+</div>
+<p class="text-slate-400 text-sm italic">"The animation in Episode 6 was absolutely mind-blowing. Studio Trigger really outdid themselves with the visual metaphors for cyberpsychosis."</p>
+<div class="flex items-center gap-4 mt-4">
+<button class="flex items-center gap-1 text-xs text-slate-500 hover:text-primary"><span class="material-symbols-outlined text-sm">thumb_up</span> 42</button>
+<button class="flex items-center gap-1 text-xs text-slate-500 hover:text-primary"><span class="material-symbols-outlined text-sm">reply</span> Reply</button>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex gap-4">
+<div class="size-12 rounded-full bg-cover bg-center border-2 border-slate-700" data-alt="User avatar for Alex Rivera" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwgoj0xXqPsgRe66XHJq7agg1mAz1f2_VH6-_zQTWjsDjuoW4vm7UPa3pdK-ELIHxL2HcPyLl8LJon49IigPnh0zVHjb6_oFekRTisD44aUGu0HwkUHwJKwjgRwLyZkydz6fXvBf0vqJ82Gms7V1WTIqB1Ri_aw2MbJc3DRbGDHtmwCPrrXndXkTBtYyAxo8Jgp7FZ94m0Jnh4rww6409es2ijs0OnsCutMN9SadoMA2c7X0WqYwGJ5mOpJns3qNHGEfr019O8Ehuy')"></div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-2">
+<h4 class="font-bold">Alex_Riv</h4>
+<span class="text-xs text-slate-500">5 hours ago</span>
+</div>
+<p class="text-slate-400 text-sm italic">"Just finished the finale... I am emotionally destroyed. Best anime of the year, hands down. 10/10."</p>
+<div class="flex items-center gap-4 mt-4">
+<button class="flex items-center gap-1 text-xs text-slate-500 hover:text-primary"><span class="material-symbols-outlined text-sm">thumb_up</span> 158</button>
+<button class="flex items-center gap-1 text-xs text-slate-500 hover:text-primary"><span class="material-symbols-outlined text-sm">reply</span> Reply</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar (Right) -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Action Card -->
+<div class="bg-card-dark p-8 rounded-3xl shadow-xl sticky top-24 border border-white/5">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-2xl flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] shadow-[0_0_20px_rgba(71,235,235,0.3)]">
+<span class="material-symbols-outlined">add_circle</span>
+                        Add to Tracker
+                    </button>
+<div class="mt-8 space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-white/5">
+<span class="text-slate-500 text-sm">Status</span>
+<span class="text-white font-medium">Finished Airing</span>
+</div>
+<div class="flex items-center justify-between pb-4 border-b border-white/5">
+<span class="text-slate-500 text-sm">Aired</span>
+<span class="text-white font-medium">Sept 13, 2022</span>
+</div>
+<div class="flex items-center justify-between pb-4 border-b border-white/5">
+<span class="text-slate-500 text-sm">Rating</span>
+<span class="text-white font-medium">R-17+ (Violence &amp; Profanity)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-slate-500 text-sm">Source</span>
+<span class="text-white font-medium">Original Game</span>
+</div>
+</div>
+<div class="mt-8">
+<h4 class="text-slate-500 text-xs font-bold uppercase tracking-widest mb-4">Voice Actors</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Voice actor headshot" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPYW9-34jnQ2pCglIwa40-AwE_59KB9b-O-otmyiYyXOHvsmyQLHDZ2SQhD3liGXLxMav1wF2MCkI9z0t-3yEVgKs0NIVp_J1IUlSHrBYgNYjqEGJwgV-yC9nnyYetj5v_Mvfj3oAGI9ROJkMYwZv3Ahz5eGvWKxcaz_5AN_0DdJMRSCFpifdXZe5TAIlo_wQF2_QcmY3fl647knVxIOMRO8D5O2Z5ohL76LnuFH1xprW0RZ_K-cIrU9kt_uEFx3qe9dRJonzb04pZ')"></div>
+<div>
+<p class="text-sm font-bold">Kenn</p>
+<p class="text-xs text-slate-500">David Martinez</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-cover bg-center" data-alt="Voice actor headshot" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcV9mQq04hhd7dARisAQBRz2ziQu7K1QSs6-WdQHsm1Q-Iayi0RYPkNSENBWECC42vaaJsniLAas9J1NTwZOB3LZ_wHQeNamTLNHcg0IU31GFbGn32jnMvE5WS7jOI2VHvFPS8W97VP59Nxt_KP6HeF6WyTCvcFSHXzNRB_KvunrpLD-GLq6hK4Oe63fm1FSVm5DyyjHdnbmBCGR7fIObThnx5fIobmXVjSolXibHw1-OkTsTcyc4zXHEqywF_O8eyl7HTd53nVGVM')"></div>
+<div>
+<p class="text-sm font-bold">Aoi Yuuki</p>
+<p class="text-xs text-slate-500">Lucy</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-white/5">
+<button class="w-full flex items-center justify-center gap-2 text-slate-500 hover:text-white transition-colors text-sm font-bold">
+<span class="material-symbols-outlined">share</span>
+                            Share with friends
+                        </button>
+</div>
+</div>
+<!-- Related Content Preview -->
+<div class="bg-card-dark/20 p-6 rounded-3xl border border-white/5">
+<h4 class="font-bold mb-4">You might also like</h4>
+<div class="grid grid-cols-2 gap-3">
+<div class="aspect-[2/3] rounded-lg bg-cover bg-center group relative overflow-hidden cursor-pointer" data-alt="Akira movie poster thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCuhWqVTfUppTvkWsqQqo1_2PABDhHTWd2GPRtObHx3MVC9gNECgLoCEIxPUSxyGOlI8A3MB3nitx8P6qTFEJSUVsR9npQfdprd4hjyYuaWzbfzT4loy3EzxwwqYpBcihB33cN6TukDZpM8meieVm2rqXoB1JbpK4NR7muSmd7GH5gga-lsYO54Mz7hvlQLeuQilWqEQOthShtW4Bul76rX-cHuyjTUj1hBaa5cwIaY2UXnG3-i9_aieCLj8jO6CiZuwuDKPKphOizi')">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-xs font-bold px-2 py-1 bg-primary text-background-dark rounded">Akira</span>
+</div>
+</div>
+<div class="aspect-[2/3] rounded-lg bg-cover bg-center group relative overflow-hidden cursor-pointer" data-alt="Ghost in the Shell poster thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAJAPcUHx-8Nqx9DGxbsr75y7SJBZKtKSz2haxcPMyy2-R7lXoA4hwRS_rOr7xGgvLbL1OMCP9HWS48XFhYYKpvReoCYebszR8AbKXKz-9ZiDgnPptgIR9yhw-czpIUOHfFru-S5OOPQrl9tfB4tjRl8qb9ZHa156Zwvbr_Jtx8uemSIDw6QJK2UVF7Uf37KmBlAbwAZPcWXDtiv_5k7wY7C0adofOuiu3a_ZMlSPKlt9838nWJNu8JK5InQAjTndjCLefRZSpVbTpJ')">
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="text-xs font-bold px-2 py-1 bg-primary text-background-dark rounded">G.I.T.S</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-white/5 bg-slate-950 py-12 px-6 lg:px-20">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-6 bg-primary rounded flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-sm font-bold">bolt</span>
+</div>
+<h2 class="text-lg font-bold">AniParadise</h2>
+</div>
+<div class="flex gap-8 text-sm text-slate-500">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<div class="flex gap-4">
+<button class="size-10 rounded-full bg-card-dark flex items-center justify-center hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-xl">language</span>
+</button>
+<button class="size-10 rounded-full bg-card-dark flex items-center justify-center hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-xl">settings</span>
+</button>
+</div>
+</div>
+</footer>
+</body></html>

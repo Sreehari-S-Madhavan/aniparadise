@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AniParadise Discussions Feed</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#47ebeb",
+                        "background-light": "#f2f2f3",
+                        "background-dark": "#1c1c22",
+                        "card-dark": "#2B2E33",
+                        "accent-purple": "#C580E6",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Spline Sans', sans-serif;
+        }
+        .neo-glow {
+            box-shadow: 0 0 15px rgba(71, 235, 235, 0.1);
+        }
+        .neo-glow-hover:hover {
+            box-shadow: 0 0 25px rgba(71, 235, 235, 0.2);
+            border-color: rgba(71, 235, 235, 0.4);
+        }
+        .bg-pattern {
+            background-image: radial-gradient(circle at 2px 2px, rgba(71, 235, 235, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen selection:bg-primary/30">
+<!-- Subtle Background Glows -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-accent-purple/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="relative z-10 flex flex-col min-h-screen bg-pattern">
+<!-- Header -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-background-dark/80 border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-8">
+<div class="flex items-center gap-2">
+<div class="size-9 bg-primary flex items-center justify-center rounded-lg shadow-lg shadow-primary/20">
+<svg class="text-background-dark size-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">AniParadise</h1>
+</div>
+<div class="hidden md:flex flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-xl py-2.5 pl-11 pr-4 focus:ring-2 focus:ring-primary/50 text-sm" placeholder="Search discussions, anime, or users..." type="text"/>
+</div>
+</div>
+<nav class="flex items-center gap-6">
+<a class="hidden lg:block text-sm font-semibold hover:text-primary transition-colors" href="#">Feed</a>
+<a class="hidden lg:block text-sm font-semibold hover:text-primary transition-colors" href="#">Trending</a>
+<div class="flex items-center gap-3 border-l border-slate-200 dark:border-slate-800 pl-6">
+<button class="relative p-2 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full"></span>
+</button>
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border-2 border-primary/20">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="Stylized user profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKneV-RrqSxWDD4NR-Or9UaAu3Ov_IXpW2M9xlL-DeQwEgiUFm2EhhiViScD2d5h8y0oYtErWxt00lH5ctTBmtBhmcfJ9-W7IYRamrLAzAUOKs9qmbHqqTMb0G0xoVRYH7UEyQvXjZKw9xC6V_wr1Zv1CcWzZGEB89W4NW6N1vgn6zIc1dz0avjYuu0xTDvp7AUGeL4KBakaGbilc7Cg7E8SNT8yagRx_MpNBXr_jwlC2DjzgfBz8XI0-Oz2-3rZKFbXAIwwRwIVjg"/>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 py-8 flex gap-8">
+<!-- Left Sidebar: Navigation -->
+<aside class="hidden xl:flex flex-col w-64 gap-6 shrink-0">
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-bold" href="#">
+<span class="material-symbols-outlined">forum</span>
+                        Discussions
+                    </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">auto_graph</span>
+                        Top Charts
+                    </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">bookmark</span>
+                        My Library
+                    </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+                        Communities
+                    </a>
+</div>
+<div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Trending Tags</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-lg text-xs font-medium hover:text-primary cursor-pointer">#JujutsuKaisen</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-lg text-xs font-medium hover:text-primary cursor-pointer">#OnePiece1115</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-lg text-xs font-medium hover:text-primary cursor-pointer">#MAPPA</span>
+<span class="px-3 py-1 bg-slate-200 dark:bg-slate-800 rounded-lg text-xs font-medium hover:text-primary cursor-pointer">#SoloLeveling</span>
+</div>
+</div>
+</aside>
+<!-- Main Content: Feed -->
+<section class="flex-1 flex flex-col gap-6">
+<!-- Filter Bar -->
+<div class="flex items-center gap-3 overflow-x-auto pb-2 no-scrollbar">
+<button class="px-5 py-2 rounded-xl bg-primary text-background-dark font-bold text-sm whitespace-nowrap shadow-lg shadow-primary/20">All Posts</button>
+<button class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-semibold whitespace-nowrap">Latest</button>
+<button class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-semibold whitespace-nowrap">Hot</button>
+<button class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-semibold whitespace-nowrap">Anime</button>
+<button class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-semibold whitespace-nowrap">Manga</button>
+<button class="px-5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-sm font-semibold whitespace-nowrap">Theories</button>
+</div>
+<!-- Create Post Input -->
+<div class="bg-white dark:bg-card-dark rounded-2xl p-4 border border-slate-200 dark:border-slate-800 neo-glow">
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 shrink-0 overflow-hidden">
+<img alt="User Avatar" data-alt="Small circular user avatar illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoX9zRDvidq726Z6_q157tQtMI3WkKK06NVrCzRl5wR8ZeG0UUBRAp0br9VNSStW317Lk6oHoG2fhYCsuyAx5EzpzWgv46cOGnSXkco3Y68i6C-LYE9464fbDMXTzm361mv-dbLI_BvS8oGT5QorgThLpnxzUr1M6eIQEdyGL0ZsKaJK4VV39G6Vvd9vGwvRq-EyMBy5lXPwT9oTgdWVgwbIwMdbr8QB-N-38xa63lezUnLvlgIgbqx217BgSLVrjF6sHnx8bd537U"/>
+</div>
+<button class="flex-1 text-left px-4 py-2.5 bg-slate-50 dark:bg-slate-800/50 rounded-xl text-slate-500 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                            What's on your mind? Share a theory or review...
+                        </button>
+</div>
+</div>
+<!-- Discussion Feed Cards -->
+<div class="space-y-6">
+<!-- Card 1 -->
+<article class="group bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 neo-glow-hover transition-all duration-300 overflow-hidden">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img alt="Gojo Avatar" data-alt="User avatar with white hair and sunglasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVQL7CjT0QSs4dMGBesItbu6VxNuImXtT5_nlpYW--5-6PmcKeK7n_Ex7PXuDFktZxXcosftYaNpDEan7pDTOzu9ldEB-bHVJLJYr_NIFYQZFU_KGjG2PJwM5-6EUaXIXrHkkDWcTgr_QEL9yofpDxkCAOT53bsjdDeBHva8ZGsJcd1-O8SYT72AKD6dTe1Q88i6AlkMz_nQ02Bp2lkUxhvaq4cvXadM7XOcqvK2HdNsy4l-sJu6TKPs_tYdJQytgPlt_7KQz5GgVK"/>
+</div>
+<div>
+<p class="font-bold text-sm">@GojoSatoru_Fan</p>
+<p class="text-[11px] text-slate-500 font-medium">2h ago • <span class="text-primary/80">#JujutsuKaisen</span></p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<h2 class="text-xl font-bold mb-3 leading-tight group-hover:text-primary transition-colors">Is the latest arc of Jujutsu Kaisen the best yet?</h2>
+<p class="text-slate-600 dark:text-slate-400 text-[15px] leading-relaxed mb-6">
+                                The Shibuya Incident was legendary, but the current Culling Game arc is pushing boundaries in ways we've never seen before. The power scaling and character development have reached a point of no return. What do you guys think about the latest chapters?
+                            </p>
+<div class="rounded-xl overflow-hidden mb-6 aspect-video">
+<img alt="Anime Art" class="w-full h-full object-cover" data-alt="Cinematic wide shot of a dark urban anime landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCqPX3kpg0X4wvI6QzMq-0Hr2wEIVyAGXrlCbMNWlZA0g4WJyyUJwqpAyisG8Plk1RhQXmLlmQyLjqV-qvgJLUvCfvCWCJP3vzQUVn-loJGQkQZNyXzvsH0xxbj3wDd3dXTeyx-sabv_NiebnI8z3Qqw1cW8maLY6p9oO_E7a1eB8udZmgq1YGcD8BxiaeussgvlhkCiawAIuy0JmWMC0BNzJ3f6HIAhemb3ARyJUv9LxxY03xKU7eieSFeyLCB5qQqtg_7ebFyES2"/>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-primary/20 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">thumb_up</span>
+<span class="text-xs font-bold">Agree</span>
+</button>
+<div class="px-3 border-x border-slate-200 dark:border-slate-700">
+<span class="text-xs font-black text-primary tracking-wider">+452</span>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-red-500/10 hover:text-red-400 transition-all">
+<span class="material-symbols-outlined text-lg">thumb_down</span>
+<span class="text-xs font-bold">Disagree</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-bold">128</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 neo-glow-hover transition-all duration-300">
+<div class="p-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<img alt="Luffy Avatar" data-alt="User avatar with a straw hat" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9n_4omjBoo_w_twr9NhoGbqx6_5wBnZlk0ColrWv7KDEnJJ3oAWtQwFrpBKFxqmQS8ZXBJdToS01S1D4HgH_IFZCedpcCXhQ8YIyfAJlKuVeIESo7WrrnqfmyZnsKafZ-2vF-1NdrefcQrcvxjcXEisnTkVwU9VmKbkpRRRFqEM-_t2AnMoc-sgZ8MC9xXb6EI_OlVLYsUyTCGZpaxwbs74XccMPMo_jB4u3vbdCiCqD_jml6uDYv8LxGJZNnBrKsGHQAgL2OaX3j"/>
+</div>
+<div>
+<p class="font-bold text-sm">@StrawHat_Nakama</p>
+<p class="text-[11px] text-slate-500 font-medium">5h ago • <span class="text-accent-purple/80">[Theory]</span></p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-white"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<h2 class="text-xl font-bold mb-3 leading-tight group-hover:text-primary transition-colors">[Theory] The secret behind the One Piece's location</h2>
+<p class="text-slate-600 dark:text-slate-400 text-[15px] leading-relaxed mb-6">
+                                Based on the latest chapter's revelation about the Poneglyphs, I think we've been looking at the map all wrong. Laugh Tale isn't just an island, it's a temporal anomaly located in...
+                            </p>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-primary/20 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">thumb_up</span>
+<span class="text-xs font-bold">Agree</span>
+</button>
+<div class="px-3 border-x border-slate-200 dark:border-slate-700">
+<span class="text-xs font-black text-primary tracking-wider">+1.2k</span>
+</div>
+<button class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-red-500/10 hover:text-red-400 transition-all">
+<span class="material-symbols-outlined text-lg">thumb_down</span>
+<span class="text-xs font-bold">Disagree</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">chat_bubble</span>
+<span class="text-xs font-bold">84</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-all">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Right Sidebar: Hot Topics -->
+<aside class="hidden lg:flex flex-col w-80 gap-6 shrink-0">
+<div class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
+<h3 class="font-bold text-lg mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">local_fire_department</span>
+                        Hot Topics
+                    </h3>
+<div class="space-y-4">
+<div class="group cursor-pointer">
+<p class="text-xs text-slate-500 mb-1">Anime News</p>
+<h4 class="text-sm font-bold group-hover:text-primary transition-colors">Chainsaw Man Movie Release Date Confirmed!</h4>
+<p class="text-[11px] text-slate-400 mt-1">2.4k users discussing</p>
+</div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-800"></div>
+<div class="group cursor-pointer">
+<p class="text-xs text-slate-500 mb-1">Manga Spoilers</p>
+<h4 class="text-sm font-bold group-hover:text-primary transition-colors">Blue Lock Chapter 265: The Final Strike?</h4>
+<p class="text-[11px] text-slate-400 mt-1">1.1k users discussing</p>
+</div>
+<div class="w-full h-px bg-slate-100 dark:bg-slate-800"></div>
+<div class="group cursor-pointer">
+<p class="text-xs text-slate-500 mb-1">Community</p>
+<h4 class="text-sm font-bold group-hover:text-primary transition-colors">Best Anime Opening of the 2024 Spring Season?</h4>
+<p class="text-[11px] text-slate-400 mt-1">3.5k users discussing</p>
+</div>
+</div>
+<button class="w-full mt-6 py-2.5 bg-slate-100 dark:bg-slate-800 rounded-xl text-xs font-bold hover:bg-primary hover:text-background-dark transition-all">View Leaderboard</button>
+</div>
+<div class="relative rounded-2xl overflow-hidden aspect-[4/5] group cursor-pointer">
+<img alt="Promoted" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Vertical anime character illustration with neon lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAubeRyK_8MbKritWaHaCwIsWDM8RPr33zZ9ELE8BCdKUhNLo0WkkcToUQUjJmhnoUCcp16M1U92tD1org4jS1DRZri2nUdJ3oujDs1VqlL3EoWRkY4YSrrZvL2mP-Eiwhk87PTPyKFnpPEr-fwQRLCRxH6RkIyAr7YOOMLeq_U-a9xlFsCW6_rIIzjTPx4iafNUo_LlZ7je6P9lzfICaLLpchhAs6fsm0L8tQz9Zzp18_dNM0wFJ9f9sPQI7dzmQGUgAk0tl8ED6cV"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-5">
+<span class="px-2 py-0.5 bg-primary text-background-dark text-[10px] font-black rounded mb-2 inline-block uppercase">Sponsored</span>
+<h4 class="text-white font-bold leading-tight">Join the AniParadise Official Discord</h4>
+<p class="text-slate-300 text-xs mt-1">Daily giveaways &amp; watch parties</p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-8 right-8 size-14 bg-primary text-background-dark rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+</div>
+</body></html>
