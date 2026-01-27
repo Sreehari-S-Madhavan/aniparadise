@@ -46,7 +46,6 @@ function AppRoutes() {
           <Route path="/register" element={<Register />} />
           <Route path="/debug" element={<Debug />} />
           <Route path="/tracker" element={<ProtectedRoute><Tracker /></ProtectedRoute>} />
-          <Route path="/discussions" element={<ProtectedRoute><Discussions /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         </Routes>
       </AnimatePresence>

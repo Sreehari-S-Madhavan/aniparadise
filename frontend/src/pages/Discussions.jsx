@@ -4,6 +4,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { getDiscussions, createDiscussion, toggleLike } from '../services/discussions';
 import PageTransition from '../components/PageTransition';
@@ -12,6 +13,7 @@ import modalStyles from './DiscussionsModal.module.css';
 
 export default function Discussions() {
   const { isAuthenticated, user } = useAuth();
+  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
@@ -36,6 +38,14 @@ export default function Discussions() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCreateClick = () => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    setShowCreateModal(true);
   };
 
   const handleCreatePost = async (e) => {
@@ -100,6 +110,13 @@ export default function Discussions() {
               All Discussions
             </button>
             <button
+              className={filter === 'general' ? styles.sidebarLinkActive : styles.sidebarLink}
+              onClick={() => setFilter('general')}
+            >
+              <span className="material-symbols-outlined">chat_bubble</span>
+              General
+            </button>
+            <button
               className={filter === 'anime' ? styles.sidebarLinkActive : styles.sidebarLink}
               onClick={() => setFilter('anime')}
             >
@@ -120,6 +137,13 @@ export default function Discussions() {
               <span className="material-symbols-outlined">psychology</span>
               Theories
             </button>
+            <button
+              className={filter === 'review' ? styles.sidebarLinkActive : styles.sidebarLink}
+              onClick={() => setFilter('review')}
+            >
+              <span className="material-symbols-outlined">rate_review</span>
+              Reviews
+            </button>
           </div>
 
           <div className={styles.trendingTags}>
@@ -136,19 +160,19 @@ export default function Discussions() {
         {/* Main Feed */}
         <section className={styles.feed}>
           {/* Create Post Input */}
-          {isAuthenticated && (
-            <div className={styles.createPost}>
-              <div className={styles.createPostAvatar}>
-                {user?.username?.charAt(0).toUpperCase() || 'U'}
-              </div>
-              <button
-                className={styles.createPostButton}
-                onClick={() => setShowCreateModal(true)}
-              >
-                What's on your mind? Share a theory or review...
-              </button>
+          <div className={styles.createPost}>
+            <div className={styles.createPostAvatar}>
+              {isAuthenticated ? (user?.username?.charAt(0).toUpperCase() || 'U') : '?'}
             </div>
-          )}
+            <button
+              className={styles.createPostButton}
+              onClick={handleCreateClick}
+            >
+              {isAuthenticated
+                ? "What's on your mind? Share a theory or review..."
+                : "Login to share a theory or review..."}
+            </button>
+          </div>
 
           {/* Loading State */}
           {loading && <div className={styles.loading}>Loading discussions...</div>}
@@ -245,11 +269,9 @@ export default function Discussions() {
       </div>
 
       {/* Floating Action Button */}
-      {isAuthenticated && (
-        <button className={styles.fab} onClick={() => setShowCreateModal(true)}>
-          <span className="material-symbols-outlined">add</span>
-        </button>
-      )}
+      <button className={styles.fab} onClick={handleCreateClick}>
+        <span className="material-symbols-outlined">add</span>
+      </button>
 
       {/* Create Post Modal */}
       {showCreateModal && (
@@ -273,6 +295,9 @@ export default function Discussions() {
                 className={modalStyles.modalInput}
                 required
               />
+              <div style={{ marginBottom: '0.5rem', color: 'rgba(255,255,255,0.6)', fontSize: '0.875rem' }}>
+                Select Category
+              </div>
               <select
                 value={newPost.category}
                 onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}
