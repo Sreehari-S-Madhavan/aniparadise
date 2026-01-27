@@ -19,26 +19,35 @@ export default function Tracker() {
 
   useEffect(() => {
     loadTracker();
-  }, [statusFilter]);
+  }, []);
 
   const loadTracker = async () => {
     try {
       setLoading(true);
-      const response = await getTracker(statusFilter === 'all' ? null : statusFilter);
+      // Fetch ALL items to get accurate counts
+      const response = await getTracker(null);
       if (response.tracker) {
         setTrackerItems(response.tracker);
-        // Load anime details for each item
-        const animePromises = response.tracker.map(item =>
-          getAnimeById(item.anime_id).catch(() => null)
-        );
-        const animeResults = await Promise.all(animePromises);
-        const animeMap = {};
-        animeResults.forEach((result, index) => {
-          if (result?.data) {
-            animeMap[response.tracker[index].anime_id] = result.data;
-          }
-        });
-        setAnimeData(animeMap);
+
+        // Load anime details for each item, but only if not already in cache
+        const itemsToFetch = response.tracker.filter(item => !animeData[item.anime_id]);
+
+        if (itemsToFetch.length > 0) {
+          const animePromises = itemsToFetch.map(item =>
+            getAnimeById(item.anime_id).catch(() => null)
+          );
+          const animeResults = await Promise.all(animePromises);
+
+          setAnimeData(prev => {
+            const next = { ...prev };
+            animeResults.forEach((result, index) => {
+              if (result?.data) {
+                next[itemsToFetch[index].anime_id] = result.data;
+              }
+            });
+            return next;
+          });
+        }
       }
     } catch (error) {
       console.error('Error loading tracker:', error);
@@ -49,12 +58,21 @@ export default function Tracker() {
 
   const handleUpdateTracker = async (trackerId, updateData) => {
     try {
+      // Optimistic update or just avoid full page loading
       await updateTracker(trackerId, updateData);
-      loadTracker();
+      // Refresh only the data, without setting loading=true
+      const response = await getTracker(null);
+      if (response.tracker) {
+        setTrackerItems(response.tracker);
+      }
     } catch (error) {
       alert('Failed to update tracker: ' + (error.message || 'Unknown error'));
     }
   };
+
+  const filteredItems = statusFilter === 'all'
+    ? trackerItems
+    : trackerItems.filter(item => item.status === statusFilter);
 
   const statuses = ['all', 'watching', 'completed', 'plan-to-watch', 'on-hold', 'dropped'];
 
@@ -91,7 +109,7 @@ export default function Tracker() {
 
       {loading ? (
         <div className={styles.loading}>Accessing your library...</div>
-      ) : trackerItems.length === 0 ? (
+      ) : filteredItems.length === 0 ? (
         <div className={styles.empty}>
           <p>No anime in your tracker {statusFilter !== 'all' ? `with status "${getStatusLabel(statusFilter)}"` : ''}.</p>
           <Link to="/browse">
@@ -100,7 +118,7 @@ export default function Tracker() {
         </div>
       ) : (
         <div className={styles.list}>
-          {trackerItems.map((item) => {
+          {filteredItems.map((item) => {
             const anime = animeData[item.anime_id];
 
             return (

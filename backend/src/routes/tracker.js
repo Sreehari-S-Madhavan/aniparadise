@@ -73,13 +73,17 @@ router.post('/', async (req, res) => {
     );
 
     if (existing.rows.length > 0) {
-      // Update existing
+      // Update existing - preserve existing values if not provided in request
       const result = await pool.query(
         `UPDATE tracker 
-         SET status = $1, progress = COALESCE($2, progress), rating = COALESCE($3, rating), notes = COALESCE($4, notes), updated_at = NOW()
+         SET status = $1, 
+             progress = COALESCE($2, progress), 
+             rating = COALESCE($3, rating), 
+             notes = COALESCE($4, notes), 
+             updated_at = NOW()
          WHERE user_id = $5 AND anime_id = $6
          RETURNING *`,
-        [status, progress, rating, notes, userId, anime_id]
+        [status, req.body.progress !== undefined ? progress : null, req.body.rating !== undefined ? rating : null, req.body.notes !== undefined ? notes : null, userId, anime_id]
       );
       return res.json({ message: 'Tracker updated', tracker: result.rows[0] });
     }

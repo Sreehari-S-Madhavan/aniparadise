@@ -2,7 +2,7 @@
 # Run this to check if servers are running
 
 Write-Host "`n🧪 AniParadise Local Testing`n" -ForegroundColor Cyan
-Write-Host "=" * 50
+Write-Host ("=" * 50)
 
 # Check Backend
 Write-Host "`n📡 Backend Server:" -ForegroundColor Yellow
@@ -44,6 +44,6 @@ try {
     Write-Host "   ❌ Anime API test failed" -ForegroundColor Red
 }
 
-Write-Host "`n" + "=" * 50
+Write-Host ("`n" + ("=" * 50))
 Write-Host "`n✅ Testing Complete!`n" -ForegroundColor Green
 Write-Host "Open http://localhost:5173 in your browser to test the app!`n" -ForegroundColor Cyan
