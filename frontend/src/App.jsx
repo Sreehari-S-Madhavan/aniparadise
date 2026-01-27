@@ -11,6 +11,7 @@ import Discussions from './pages/Discussions';
 import WhereToWatch from './pages/WhereToWatch';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Debug from './pages/Debug';
 import './App.css';
 
 // Protected Route Component
