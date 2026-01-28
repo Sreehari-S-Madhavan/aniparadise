@@ -22,7 +22,17 @@
 .left {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
+}
+
+.menuToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 .logo {
@@ -59,8 +69,20 @@
 
 .nav {
   display: none;
-  align-items: center;
-  gap: 2rem;
+}
+
+.navOpen {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #1c1c22;
+  padding: 2rem;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
 }
 
 .navLink {
@@ -90,7 +112,6 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  flex: 1;
   justify-content: flex-end;
 }
 
@@ -185,6 +206,17 @@
   background: #3dd5d5;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 40;
+}
+
 .avatar {
   width: 2.5rem;
   height: 2.5rem;
@@ -198,12 +230,33 @@
 }
 
 @media (min-width: 768px) {
+  .menuToggle {
+    display: none;
+  }
+
   .nav {
     display: flex;
+    flex-direction: row;
+    position: static;
+    background: transparent;
+    padding: 0;
+    gap: 2rem;
+    border: none;
   }
-  
+
+  .navOpen {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    background: transparent;
+    padding: 0;
+    gap: 2rem;
+    border: none;
+  }
+
   .searchContainer {
     display: flex;
+    flex: 1;
   }
 }
 

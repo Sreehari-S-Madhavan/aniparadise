@@ -40,6 +40,10 @@ export default function Profile() {
       }
     } catch (error) {
       console.error('Error loading profile:', error);
+      // If unauthorized, clear local session
+      if (error.message.includes('401') || error.message.includes('Authentication failed') || error.message.includes('No token provided')) {
+        handleLogout();
+      }
     } finally {
       setLoading(false);
     }
